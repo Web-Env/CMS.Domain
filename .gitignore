@@ -1,0 +1,16 @@
+# Compiled output
+/CMS.API/bin
+/CMS.API/obj
+/CMS.API/debug
+/CMS.Domain.All/bin
+/CMS.Domain.All/obj
+/CMS.Domain.All/debug
+/CMS.Domain.Entities/bin
+/CMS.Domain.Entities/obj
+/CMS.Domain.Entities/debug
+/CMS.Domain.Repositories/bin
+/CMS.Domain.Repositories/obj
+/CMS.Domain.Repositories/debug
+
+# IDE - VS
+/.vs

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.Domain.Entities\CMS.Domain.Entities.csproj" />
+    <ProjectReference Include="..\CMS.Domain.Repositories\CMS.Domain.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
