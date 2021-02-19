@@ -24,6 +24,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
-      run: nuget pack -OutputDirectory ./dist/ -Prop Configuration=Release
+      run: nuget pack ./CMS.Domain.All/.nuspec -OutputDirectory ./dist/ -Prop Configuration=Release
     - name: Publish
       run: dotnet nuget push ./dist/*nupkg --source "github" --api-key="${{ secrets.GPR_TOKEN }}"
