@@ -1,10 +1,11 @@
-﻿using CMS.Domain.Repositories.Interfaces;
+﻿using CMS.Domain.Repositories.Contexts;
+using CMS.Domain.Repositories.Interfaces;
 
 namespace CMS.Domain.Repositories
 {
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly CMSContext _CMSContext;
+        private readonly CMSRepositoryContext _CMSContext;
 
         public IAuditLogRepository AuditLogRepository { get; private set; }
         public IEntryRepository EntryRepository { get; private set; }
@@ -12,7 +13,7 @@ namespace CMS.Domain.Repositories
         public ISectionRepository SectionRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
 
-        public RepositoryManager(CMSContext context)
+        public RepositoryManager(CMSRepositoryContext context)
         {
             _CMSContext = context;
 

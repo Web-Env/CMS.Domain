@@ -1,4 +1,5 @@
-﻿using CMS.Domain.Repositories.Interfaces;
+﻿using CMS.Domain.Repositories.Contexts;
+using CMS.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace CMS.Domain.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected readonly CMSContext _CMSContext;
-        public RepositoryBase(CMSContext context)
+        protected readonly CMSRepositoryContext _CMSContext;
+        public RepositoryBase(CMSRepositoryContext context)
         {
             _CMSContext = context;
         }

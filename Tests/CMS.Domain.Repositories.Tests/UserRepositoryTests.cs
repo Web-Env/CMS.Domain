@@ -1,41 +1,29 @@
-﻿using CMS.Domain.Entities;
-using CMS.Domain.Repositories.Interfaces;
-using System;
+﻿using CMS.Domain.Tests.Funcs;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace CMS.Domain.Repositories.Tests
 {
+    [Trait("Category", "Unit")]
     public class UserRepositoryTests : RepositoryTestBase
     {
-        private IUserRepository GetInMemoryUserRepository()
-        {
-            var context = CreateTestContext();
-            return new Repositories.UserRepository(context);
-        }
+        public UserRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture) { }
 
         [Fact]
-        [Trait("Category", "Unit")]
-        public async Task Test_UserRepository_GetsById_Async()
+        public async Task Test_UserRepository_GetById_ReturnsUser()
         {
-            IUserRepository userRepository = GetInMemoryUserRepository();
-            var userId = Guid.NewGuid();
-            var user = new User()
+            using(var context = GetContext())
             {
-                Id = userId,
-                FirstName = "Tester",
-                LastName = "McTesterson",
-                Email = "Tester.McTesterson@testing.com",
-                IsAdmin = false,
-                CreatedBy = Guid.Empty,
-                CreatedOn = DateTime.Now,
-                LastUpdatedBy = Guid.Empty,
-                LastUpdatedOn = DateTime.Now
-            };
+                await InvokeFuncsAsync(
+                    UserFunc.CreateOneUser
+                );
 
-            user = await userRepository.AddOrUpdateAsync(user);
+                var user = await context.Users.FirstOrDefaultAsync();
 
-            Assert.NotNull(await userRepository.GetByIdAsync(user.Id));
+                Assert.NotNull(await RepositoryManager.UserRepository.GetByIdAsync(user.Id));
+            }
+            
         }
     }
 }

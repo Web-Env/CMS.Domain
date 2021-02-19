@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Domain.Entities
 {
+    [Table(nameof(User))]
     public partial class User
     {
         public User()

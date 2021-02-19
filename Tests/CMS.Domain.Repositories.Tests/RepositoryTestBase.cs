@@ -1,20 +1,46 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CMS.Domain.Entities;
+using CMS.Domain.Repositories.Contexts;
+using CMS.Domain.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace CMS.Domain.Repositories.Tests
 {
-    public class RepositoryTestBase
+    public abstract class RepositoryTestBase : IAssemblyFixture<RepositoryDatabaseFixture>
     {
-        public Repositories.CMSContext CreateTestContext()
+        private RepositoryDatabaseFixture _repositoryDatabaseFixture;
+        public IRepositoryManager RepositoryManager { get; private set; }
+
+        public RepositoryTestBase(RepositoryDatabaseFixture fixture) {
+            _repositoryDatabaseFixture = fixture;
+            RepositoryManager = new RepositoryManager(CreateTestRepositoryContext());
+        }
+
+        public CMSRepositoryContext CreateTestRepositoryContext()
         {
-            DbContextOptions<Repositories.CMSContext> options;
-            var builder = new DbContextOptionsBuilder<Repositories.CMSContext>();
-            builder.UseInMemoryDatabase(nameof(Repositories.CMSContext));
-            options = builder.Options;
-            Repositories.CMSContext context = new Repositories.CMSContext(options);
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            var options = new DbContextOptionsBuilder<CMSRepositoryContext>()
+                .UseSqlite(_repositoryDatabaseFixture.GetConnection())
+                .Options;
+            CMSRepositoryContext context = new CMSRepositoryContext(options);
 
             return context;
+        }
+
+        public CMSContext GetContext()
+        {
+            return _repositoryDatabaseFixture.GetContext();
+        }
+
+        public async Task InvokeFuncsAsync(params Func<CMSContext, Task>[] funcs)
+        {
+            var context = GetContext();
+
+            foreach (var func in funcs)
+            {
+                await func.Invoke(context).ConfigureAwait(false);
+            }
         }
     }
 }
