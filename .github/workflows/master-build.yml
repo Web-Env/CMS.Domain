@@ -1,7 +1,7 @@
-name: .NET
+name: Master - Build, Test, Pack & Publish
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
 
 jobs:
@@ -23,3 +23,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Pack
+      run: nuget pack ./CMS.Domain.All/.nuspec -OutputDirectory ./dist/ -Prop Configuration=Release
+    - name: Publish
+      run: dotnet nuget push ./dist/*nupkg --source "github" --api-key="${{ secrets.GPR_TOKEN }}"
