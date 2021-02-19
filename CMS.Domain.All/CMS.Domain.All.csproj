@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1</Version>
     <RepositoryUrl>https://github.com/AdamBOD/CMS.Domain</RepositoryUrl>
+    <Authors>Adam Barry-O'Donovan</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CMS.Domain.Entities\CMS.Domain.Entities.csproj" />
     <ProjectReference Include="..\CMS.Domain.Repositories\CMS.Domain.Repositories.csproj" />
   </ItemGroup>
-
 </Project>

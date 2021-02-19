@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>CMS.Domain.All</id>
+        <version>$version$</version>
+        <description>Domain logic for the CMS.API project</description>
+        <authors>Adam Barry-O'Donovan</authors>
+        <projectUrl>https://github.com/AdamBOD/CMS.Domain</projectUrl>        
+        <repository type="git" url="https://github.com/AdamBOD/CMS.Domain" />
+        <tags>Domain All Entities Repositories</tags>
+        <dependencies>
+            <group targetFramework="net5.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\net5.0\CMS.Domain.Entities.dll" target="lib\net5.0\CMS.Domain.Entities.dll" />
+        <file src="bin\Release\net5.0\CMS.Domain.Repositories.dll" target="lib\net5.0\CMS.Domain.Repositories.dll" />
+    </files>
+</package>
