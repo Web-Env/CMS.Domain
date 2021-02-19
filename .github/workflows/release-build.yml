@@ -1,0 +1,31 @@
+name: Release - Build, Test, Pack & Publish
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Clean
+      run: dotnet clean ./CMS.Domain.sln -- configuration Release && dotnet nuget locals all --clear
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build (Debug)
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Build (Release)
+      run: dotnet build -c Release --no-restore
+    - name: Pack
+      run: nuget pack ./CMS.Domain.All/.nuspec -OutputDirectory ./dist/ -Prop Configuration=Release
+    - name: Publish
+      run: dotnet nuget push ./dist/*nupkg -s https://nuget.pkg.github.com/AdamBOD/index.json --api-key="${{ secrets.GPR_TOKEN }}"
