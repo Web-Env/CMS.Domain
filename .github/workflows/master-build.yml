@@ -28,4 +28,4 @@ jobs:
     - name: Pack
       run: nuget pack ./CMS.Domain.All/.nuspec -OutputDirectory ./dist/ -Prop Configuration=Release -Suffix ci-${GITHUB_RUN_NUMBER}
     - name: Publish
-      run: dotnet nuget push ./dist/*nupkg --source "GPR" --api-key="${{ secrets.GPR_TOKEN }}"
+      run: dotnet nuget push ./dist/*nupkg -s https://nuget.pkg.github.com/AdamBOD/index.json --api-key="${{ secrets.GPR_TOKEN }}"
