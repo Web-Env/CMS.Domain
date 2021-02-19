@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Clean
-      run: dotnet clean ./CMS-Domain/CMS.Domain.sln -- configuration Release && dotnet nuget locals all --clear
+      run: dotnet clean ./CMS.Domain.sln -- configuration Release && dotnet nuget locals all --clear
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
