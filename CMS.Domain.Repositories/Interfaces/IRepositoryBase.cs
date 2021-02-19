@@ -7,9 +7,9 @@ namespace CMS.Domain.Repositories.Interfaces
 {
     public interface IRepositoryBase<T> where T : class
     {
-        Task<T> GetByIdAsync(string id);
+        Task<T> GetByIdAsync(Guid id);
 
-        Task<IEnumerable<T>> GetManyByIdAsync(IEnumerable<string> ids);
+        Task<IEnumerable<T>> GetManyByIdAsync(IEnumerable<Guid> ids);
 
         Task<IEnumerable<T>> GetPageAsync(int pageNumber, int pageSize);
 
@@ -21,10 +21,10 @@ namespace CMS.Domain.Repositories.Interfaces
 
         Task RemoveAsync(T entity);
 
-        Task RemoveByIdAsync(string id);
+        Task RemoveByIdAsync(Guid id);
 
         Task RemoveRangeAsync(IEnumerable<T> entities);
 
-        Task RemoveRangeByIdAsync(IEnumerable<string> ids);
+        Task RemoveRangeByIdAsync(IEnumerable<Guid> ids);
     }
 }
