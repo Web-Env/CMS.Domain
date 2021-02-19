@@ -2,13 +2,11 @@
 using CMS.Domain.Repositories.Contexts;
 using CMS.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
-using Xunit.Extensions.AssemblyFixture;
+using Xunit;
 
 namespace CMS.Domain.Repositories.Tests
 {
-    public abstract class RepositoryTestBase : IAssemblyFixture<RepositoryDatabaseFixture>
+    public abstract class RepositoryTestBase : IClassFixture<RepositoryDatabaseFixture>
     {
         private RepositoryDatabaseFixture _repositoryDatabaseFixture;
         public IRepositoryManager RepositoryManager { get; private set; }
@@ -31,16 +29,6 @@ namespace CMS.Domain.Repositories.Tests
         public CMSContext GetContext()
         {
             return _repositoryDatabaseFixture.GetContext();
-        }
-
-        public async Task InvokeFuncsAsync(params Func<CMSContext, Task>[] funcs)
-        {
-            var context = GetContext();
-
-            foreach (var func in funcs)
-            {
-                await func.Invoke(context).ConfigureAwait(false);
-            }
         }
     }
 }

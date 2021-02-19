@@ -5,7 +5,7 @@ using System;
 using Xunit;
 using Xunit.Extensions.AssemblyFixture;
 
-[assembly: TestFramework(AssemblyFixtureFramework.TypeName, AssemblyFixtureFramework.AssemblyName)]
+//[assembly: TestFramework(AssemblyFixtureFramework.TypeName, AssemblyFixtureFramework.AssemblyName)]
 
 namespace CMS.Domain.Tests
 {
