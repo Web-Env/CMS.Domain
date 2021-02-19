@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>CMS.Domain.All</id>
-        <version>$version$</version>
+        <version>0.0.1</version>
         <description>Domain logic for the CMS.API project</description>
         <authors>Adam Barry-O'Donovan</authors>
         <projectUrl>https://github.com/AdamBOD/CMS.Domain</projectUrl>        
