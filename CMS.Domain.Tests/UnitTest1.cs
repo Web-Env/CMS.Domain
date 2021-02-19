@@ -8,7 +8,7 @@ namespace CMS.Domain.Tests
         [Fact]
         public void Test1()
         {
-            var test = false;
+            var test = true;
             Assert.True(true);
         }
     }
