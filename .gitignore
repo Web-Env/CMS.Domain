@@ -1,7 +1,4 @@
 # Compiled output
-/CMS.API/bin
-/CMS.API/obj
-/CMS.API/debug
 /CMS.Domain.All/bin
 /CMS.Domain.All/obj
 /CMS.Domain.All/debug
@@ -11,6 +8,9 @@
 /CMS.Domain.Repositories/bin
 /CMS.Domain.Repositories/obj
 /CMS.Domain.Repositories/debug
+/CMS.Domain.Tests/bin
+/CMS.Domain.Tests/obj
+/CMS.Domain.Tests/debug
 
 # IDE - VS
 /.vs
