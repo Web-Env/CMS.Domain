@@ -9,7 +9,7 @@ namespace CMS.Domain.Tests
         public void Test1()
         {
             var test = true;
-            Assert.False(false);
+            Assert.True(True);
         }
     }
 }
