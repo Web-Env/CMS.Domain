@@ -23,6 +23,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: List Directory
+      run: ls -la
     - name: Pack
       run: nuget pack ./CMS.Domain.All/.nuspec -OutputDirectory ./dist/ -Prop Configuration=Release -Suffix .ci-${GITHUB_RUN_ID}
     - name: Publish
