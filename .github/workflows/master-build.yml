@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
 
     steps:
     - uses: actions/checkout@v2
@@ -23,8 +25,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-        dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
-        dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/ /p:MergeWith=${{ github.workspace }}/Coverage/
+        dotnet test --no-build Tests --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
     - name: List
       run: ls -la ${{ github.workspace }}
     - name: Publish Coverage
