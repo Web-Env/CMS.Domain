@@ -8,9 +8,12 @@
 /CMS.Domain.Repositories/bin
 /CMS.Domain.Repositories/obj
 /CMS.Domain.Repositories/debug
-/CMS.Domain.Tests/bin
-/CMS.Domain.Tests/obj
-/CMS.Domain.Tests/debug
+/Tests/CMS.Domain.Tests/bin
+/Tests/CMS.Domain.Tests/obj
+/Tests/CMS.Domain.Tests/debug
+/Tests/CMS.Domain.Repositories.Tests/bin
+/Tests/CMS.Domain.Repositories.Tests/obj
+/Tests/CMS.Domain.Repositories.Tests/debug
 
 # IDE - VS
 /.vs

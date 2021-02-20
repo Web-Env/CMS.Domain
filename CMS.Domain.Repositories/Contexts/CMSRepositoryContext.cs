@@ -1,11 +1,11 @@
 ﻿using CMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CMS.Domain.Repositories
+namespace CMS.Domain.Repositories.Contexts
 {
-    public class CMSContext : DbContext
+    public class CMSRepositoryContext : DbContext
     {
-        public CMSContext(DbContextOptions<CMSContext> options) : base(options) { }
+        public CMSRepositoryContext(DbContextOptions<CMSRepositoryContext> options) : base(options) { }
 
         public DbSet<AuditLog> AuditLogs { get; set; }
 

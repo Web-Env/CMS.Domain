@@ -1,4 +1,5 @@
-﻿using CMS.Domain.Repositories.Interfaces;
+﻿using CMS.Domain.Repositories.Contexts;
+using CMS.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,20 @@ namespace CMS.Domain.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected readonly CMSContext _CMSContext;
-        public RepositoryBase(CMSContext context)
+        protected readonly CMSRepositoryContext _CMSContext;
+        public RepositoryBase(CMSRepositoryContext context)
         {
             _CMSContext = context;
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             return await _CMSContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetManyByIdAsync(IEnumerable<string> ids)
+        public async Task<IEnumerable<T>> GetManyByIdAsync(IEnumerable<Guid> ids)
         {
-            return await _CMSContext.Set<T>().Where(x => ids.Contains(EF.Property<string>(x, "Id"))).ToListAsync();
+            return await _CMSContext.Set<T>().Where(x => ids.Contains(EF.Property<Guid>(x, "Id"))).ToListAsync();
         }
 
         public async Task<IEnumerable<T>> GetPageAsync(int pageNumber, int pageSize)
@@ -61,7 +62,7 @@ namespace CMS.Domain.Repositories
             await _CMSContext.SaveChangesAsync();
         }
 
-        public async Task RemoveByIdAsync(string id)
+        public async Task RemoveByIdAsync(Guid id)
         {
             var entity = await GetByIdAsync(id);
             await RemoveAsync(entity);
@@ -73,7 +74,7 @@ namespace CMS.Domain.Repositories
             await _CMSContext.SaveChangesAsync();
         }
 
-        public async Task RemoveRangeByIdAsync(IEnumerable<string> ids)
+        public async Task RemoveRangeByIdAsync(IEnumerable<Guid> ids)
         {
             var entities = await GetManyByIdAsync(ids);
             await RemoveRangeAsync(entities);
