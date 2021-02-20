@@ -8,8 +8,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
 
     steps:
     - uses: actions/checkout@v2
@@ -20,6 +18,8 @@ jobs:
     - name: Clean
       run: dotnet clean ./CMS.Domain.sln -- configuration Release && dotnet nuget locals all --clear
     - name: Restore dependencies
+      env:
+        GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
       run: dotnet restore
     - name: Build (Debug)
       run: dotnet build --no-restore
