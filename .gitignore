@@ -2,20 +2,26 @@
 /CMS.Domain.All/bin
 /CMS.Domain.All/obj
 /CMS.Domain.All/debug
+
 /CMS.Domain.Entities/bin
 /CMS.Domain.Entities/obj
 /CMS.Domain.Entities/debug
+
 /CMS.Domain.Repositories/bin
 /CMS.Domain.Repositories/obj
 /CMS.Domain.Repositories/debug
+
 /Tests/CMS.Domain.Tests/bin
 /Tests/CMS.Domain.Tests/obj
 /Tests/CMS.Domain.Tests/debug
 /Tests/CMS.Domain.Tests/TestResults
+/Tests/CMS.Domain.Tests/coverage.json
+
 /Tests/CMS.Domain.Repositories.Tests/bin
 /Tests/CMS.Domain.Repositories.Tests/obj
 /Tests/CMS.Domain.Repositories.Tests/debug
 /Tests/CMS.Domain.Repositories.Tests/TestResults
+/Tests/CMS.Domain.Repositories.Tests/coverage.json
 
 # IDE - VS
 /.vs
