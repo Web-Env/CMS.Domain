@@ -23,8 +23,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-        dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true
-        dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:MergeWith=$HOME/work/CMS.Domain/CMS.Domain/Tests/CMS.Domain.Tests/coverage.json
+        dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage/
+        dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage/ /p:MergeWith=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage
     - name: List
       run: |
         ls -laR $HOME/work/CMS.Domain/CMS.Domain/Tests
