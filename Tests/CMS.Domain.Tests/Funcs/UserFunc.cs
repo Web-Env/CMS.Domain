@@ -9,7 +9,7 @@ namespace CMS.Domain.Tests.Funcs
     {
         public static async Task<User> CreateOneUser(CMSContext context)
         {
-            var user = new User()
+            var user = new User
             {
                 Id = Guid.NewGuid(),
                 FirstName = "Tester",
@@ -31,7 +31,7 @@ namespace CMS.Domain.Tests.Funcs
         public static async Task<List<User>> CreateManyUsers(CMSContext context)
         {
             var users = new List<User> {
-                new User()
+                new User
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "Tester",
@@ -44,7 +44,7 @@ namespace CMS.Domain.Tests.Funcs
                     LastUpdatedBy = Guid.Empty,
                     LastUpdatedOn = DateTime.Now
                 },
-                new User()
+                new User
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "Testson",
@@ -57,7 +57,7 @@ namespace CMS.Domain.Tests.Funcs
                     LastUpdatedBy = Guid.Empty,
                     LastUpdatedOn = DateTime.Now
                 },
-                new User()
+                new User
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "Testy",

@@ -64,8 +64,8 @@ namespace CMS.Domain.Repositories
 
         public async Task RemoveByIdAsync(Guid id)
         {
-            var entity = await GetByIdAsync(id);
-            await RemoveAsync(entity);
+            var entity = await GetByIdAsync(id).ConfigureAwait(false);
+            await RemoveAsync(entity).ConfigureAwait(false);
         }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)
@@ -76,8 +76,8 @@ namespace CMS.Domain.Repositories
 
         public async Task RemoveRangeByIdAsync(IEnumerable<Guid> ids)
         {
-            var entities = await GetManyByIdAsync(ids);
-            await RemoveRangeAsync(entities);
+            var entities = await GetManyByIdAsync(ids).ConfigureAwait(false);
+            await RemoveRangeAsync(entities).ConfigureAwait(false);
         }
     }
 }

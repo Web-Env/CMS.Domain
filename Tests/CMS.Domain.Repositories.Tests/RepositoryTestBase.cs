@@ -8,10 +8,10 @@ namespace CMS.Domain.Repositories.Tests
 {
     public abstract class RepositoryTestBase : IClassFixture<RepositoryDatabaseFixture>
     {
-        private RepositoryDatabaseFixture _repositoryDatabaseFixture;
+        private readonly RepositoryDatabaseFixture _repositoryDatabaseFixture;
         public IRepositoryManager RepositoryManager { get; private set; }
 
-        public RepositoryTestBase(RepositoryDatabaseFixture fixture) {
+        protected RepositoryTestBase(RepositoryDatabaseFixture fixture) {
             _repositoryDatabaseFixture = fixture;
             RepositoryManager = new RepositoryManager(CreateTestRepositoryContext());
         }
