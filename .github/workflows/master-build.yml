@@ -26,12 +26,12 @@ jobs:
         dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/coverage/
         dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/coverage/ /p:MergeWith=${{ github.workspace }}/coverage
     - name: List
-      run: ls -la ${{ github.workspace }}/coverage
+      run: ls -la ${{ github.workspace }}
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
         project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: coverage/coverage.json
+        coverage-reports: ${{ github.workspace }}/coverage/coverage.json
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
