@@ -20,26 +20,21 @@ jobs:
     - name: Restore dependencies
       env:
         GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
-      run: dotnet restore --configfile CMS.Domain.All/nuget.config
+      run: dotnet restore
     - name: Build (Debug)
       run: dotnet build --no-restore
     - name: Test
       run: |
-        dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
-        touch ${{ github.workspace }}/Coverage/cobertura.xml
+        dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: List
       run: |
         ls -la ${{ github.workspace }}
-        ls -la ${{ github.workspace }}/Coverage
-    - name: List 2
-      run: |
-        ls -la ${{ github.workspace }}
-        ls -la ${{ github.workspace }}/Coverage
+        ls -la ${{ github.workspace }}/*.Tests
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
         project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: ${{ github.workspace }}/Coverage/cobertura.xml
+        coverage-reports: ${{ github.workspace }}/*.Tests/coverage.xml
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
