@@ -30,5 +30,12 @@ namespace CMS.Domain.Repositories.Tests
         {
             return _repositoryDatabaseFixture.GetContext();
         }
+
+        public CMSContext NewContext()
+        {
+            var context = _repositoryDatabaseFixture.NewContext(); 
+            RepositoryManager = new RepositoryManager(CreateTestRepositoryContext());
+            return context;
+        }
     }
 }

@@ -2,10 +2,6 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
-using Xunit;
-using Xunit.Extensions.AssemblyFixture;
-
-//[assembly: TestFramework(AssemblyFixtureFramework.TypeName, AssemblyFixtureFramework.AssemblyName)]
 
 namespace CMS.Domain.Tests
 {
@@ -14,7 +10,7 @@ namespace CMS.Domain.Tests
         private CMSContext _context;
 
         private const string _connectionString = "DataSource=:memory:";
-        private readonly SqliteConnection _connection;
+        private SqliteConnection _connection;
 
         protected DatabaseFixture()
         {
@@ -32,6 +28,21 @@ namespace CMS.Domain.Tests
         public CMSContext GetContext()
         {
             return _context;
+        }
+
+        public CMSContext NewContext()
+        {
+            _connection = new SqliteConnection(_connectionString);
+            _connection.Open();
+
+            var options = new DbContextOptionsBuilder<CMSContext>()
+                .UseSqlite(_connection)
+                .Options;
+
+            _context = new CMSContext(options);
+            _context.Database.EnsureCreated();
+
+            return GetContext();
         }
 
         public SqliteConnection GetConnection()
