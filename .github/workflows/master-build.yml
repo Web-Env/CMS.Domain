@@ -29,10 +29,11 @@ jobs:
       run: |
         ls -laR $HOME/work/CMS.Domain/CMS.Domain/Tests
     - name: Publish Coverage
-      uses: codacy/codacy-coverage-reporter-action@0.2.0
+      uses: brpaz/godacov-action@v1.1.1
       with:
-        project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: runner/work/CMS.Domain/CMS.Domain/Tests/Coverage/coverage.json
+        codacyToken: ${{ secrets.CODACY_TOKEN }}
+        commitId: ${{ github.sha }}
+        reportPath: CMS.Domain/CMS.Domain/Tests/Coverage/coverage.json
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
