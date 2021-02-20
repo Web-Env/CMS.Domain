@@ -42,16 +42,30 @@ namespace CMS.Domain.Repositories
             return await _CMSContext.Set<T>().Where(expression).ToListAsync();
         }
 
-        public async Task<T> AddOrUpdateAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
             _CMSContext.Set<T>().Add(entity);
             await _CMSContext.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<IEnumerable<T>> AddOrUpdateRangeAsync(IEnumerable<T> entities)
+        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
         {
             _CMSContext.Set<T>().AddRange(entities);
+            await _CMSContext.SaveChangesAsync();
+            return entities;
+        }
+
+        public async Task<T> UpdateAsync(T entity)
+        {
+            _CMSContext.Set<T>().Update(entity);
+            await _CMSContext.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<IEnumerable<T>> UpdateRangeAsync(IEnumerable<T> entities)
+        {
+            _CMSContext.Set<T>().UpdateRange(entities);
             await _CMSContext.SaveChangesAsync();
             return entities;
         }
