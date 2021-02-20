@@ -20,7 +20,7 @@ jobs:
     - name: Restore dependencies
       env:
         GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
-      run: dotnet restore --config-file CMS.Domain/CMS.Domain/CMS.Domain.All/nuget.config
+      run: dotnet restore --configfile CMS.Domain/CMS.Domain/CMS.Domain.All/nuget.config
     - name: Build (Debug)
       run: dotnet build --no-restore
     - name: Test
