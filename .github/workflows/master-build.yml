@@ -22,7 +22,7 @@ jobs:
     - name: Build (Debug)
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=./coverage.json
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=coverage.json
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
