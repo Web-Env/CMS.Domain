@@ -11,9 +11,11 @@
 /Tests/CMS.Domain.Tests/bin
 /Tests/CMS.Domain.Tests/obj
 /Tests/CMS.Domain.Tests/debug
+/Tests/CMS.Domain.Tests/TestResults
 /Tests/CMS.Domain.Repositories.Tests/bin
 /Tests/CMS.Domain.Repositories.Tests/obj
 /Tests/CMS.Domain.Repositories.Tests/debug
+/Tests/CMS.Domain.Repositories.Tests/TestResults
 
 # IDE - VS
 /.vs
