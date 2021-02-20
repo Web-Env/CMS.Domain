@@ -25,7 +25,7 @@ jobs:
       run: |
         mkdir Coverage
         touch Coverage/coverage.json
-        dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/Coverage/coverage.json
+        dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/CMS.Domain/CMS.Domain/Coverage/coverage.json
     - name: List
       run: |
         pwd
@@ -34,7 +34,7 @@ jobs:
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
         project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: Coverage/coverage.json
+        coverage-reports: $HOME/work/CMS.Domain/CMS.Domain/Coverage/coverage.json
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
