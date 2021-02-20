@@ -25,7 +25,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-        dotnet test --no-build Tests --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
+        dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
     - name: List
       run: ls -la ${{ github.workspace }}
     - name: Publish Coverage
