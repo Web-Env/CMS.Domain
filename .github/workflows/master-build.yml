@@ -28,7 +28,13 @@ jobs:
         dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
         touch ${{ github.workspace }}/Coverage/cobertura.xml
     - name: List
-      run: ls -la ${{ github.workspace }}
+      run: |
+        ls -la ${{ github.workspace }}
+        ls -la ${{ github.workspace }}/Coverage
+    - name: List 2
+      run: |
+        ls -la ${{ github.workspace }}
+        ls -la ${{ github.workspace }}/Coverage
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
