@@ -15,9 +15,13 @@ namespace CMS.Domain.Repositories.Interfaces
 
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression);
 
-        Task<T> AddOrUpdateAsync(T entity);
+        Task<T> AddAsync(T entity);
 
-        Task<IEnumerable<T>> AddOrUpdateRangeAsync(IEnumerable<T> entities);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
+
+        Task<T> UpdateAsync(T entity);
+
+        Task<IEnumerable<T>> UpdateRangeAsync(IEnumerable<T> entities);
 
         Task RemoveAsync(T entity);
 
