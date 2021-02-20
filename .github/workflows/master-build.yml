@@ -23,15 +23,15 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-        dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput={{ github.workspace }}/Coverage/
-        dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput={{ github.workspace }}/Coverage/ /p:MergeWith={{ github.workspace }}/Coverage
+        dotnet test --no-build Tests/CMS.Domain.Tests/CMS.Domain.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage/
+        dotnet test --no-build Tests/CMS.Domain.Repositories.Tests/CMS.Domain.Repositories.Tests.csproj --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage/ /p:MergeWith=$HOME/work/CMS.Domain/CMS.Domain/Tests/Coverage
     - name: List
-      run: ls -laR {{ github.workspace }}/Coverage
+      run: ls -la $HOME
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
         project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: Coverage/coverage.json
+        coverage-reports: $HOME/runner/work/CMS.Domain/CMS.Domain/Tests/Coverage/coverage.json
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
