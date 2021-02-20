@@ -22,7 +22,7 @@ jobs:
     - name: Build (Debug)
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput="Coverage/coverage"
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=$HOME/Coverage/coverage
     - name: List
       run: ls -laR
     - name: Publish Coverage
