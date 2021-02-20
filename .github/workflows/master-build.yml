@@ -26,13 +26,14 @@ jobs:
     - name: Test
       run: |
         dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutput=${{ github.workspace }}/Coverage/
+        touch ${{ github.workspace }}/Coverage/cobertura.xml
     - name: List
       run: ls -la ${{ github.workspace }}
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
         project-token: ${{ secrets.CODACY_TOKEN }}
-        coverage-reports: ${{ github.workspace }}/Coverage/coverage.json
+        coverage-reports: ${{ github.workspace }}/Coverage/cobertura.xml
     - name: Build (Release)
       run: dotnet build -c Release --no-restore
     - name: Pack
