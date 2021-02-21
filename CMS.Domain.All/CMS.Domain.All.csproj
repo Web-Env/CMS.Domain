@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMS.Domain.Entities\CMS.Domain.Entities.csproj" />
+    <ProjectReference Include="..\CMS.Domain.Enums\CMS.Domain.Enums.csproj" />
     <ProjectReference Include="..\CMS.Domain.Repositories\CMS.Domain.Repositories.csproj" />
   </ItemGroup>
 </Project>

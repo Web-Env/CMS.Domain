@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Domain.Tests", "Tests\C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{604436F5-0EC3-49F6-A77F-E27ADD72E893}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Domain.Repositories.Tests", "Tests\CMS.Domain.Repositories.Tests\CMS.Domain.Repositories.Tests.csproj", "{01778C63-8444-406F-A4A6-74E4ADA9E199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Domain.Repositories.Tests", "Tests\CMS.Domain.Repositories.Tests\CMS.Domain.Repositories.Tests.csproj", "{01778C63-8444-406F-A4A6-74E4ADA9E199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Domain.Enums", "CMS.Domain.Enums\CMS.Domain.Enums.csproj", "{BDB3658E-0B39-4727-B13C-568ABAC0DA3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{01778C63-8444-406F-A4A6-74E4ADA9E199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01778C63-8444-406F-A4A6-74E4ADA9E199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01778C63-8444-406F-A4A6-74E4ADA9E199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB3658E-0B39-4727-B13C-568ABAC0DA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB3658E-0B39-4727-B13C-568ABAC0DA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB3658E-0B39-4727-B13C-568ABAC0DA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB3658E-0B39-4727-B13C-568ABAC0DA3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

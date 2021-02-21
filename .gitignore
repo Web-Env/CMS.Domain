@@ -11,6 +11,10 @@
 /CMS.Domain.Repositories/obj
 /CMS.Domain.Repositories/debug
 
+CMS.Domain.Enums/bin
+CMS.Domain.Enums/obj
+CMS.Domain.Enums/debug
+
 /Tests/CMS.Domain.Tests/bin
 /Tests/CMS.Domain.Tests/obj
 /Tests/CMS.Domain.Tests/debug
