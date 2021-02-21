@@ -8,7 +8,8 @@ namespace CMS.Domain.Tests.Helpers
     {
         public static User CreateOneUserObject(string name = "")
         {
-            return new User {
+            return new User
+            {
                 Id = Guid.NewGuid(),
                 FirstName = string.IsNullOrWhiteSpace(name) ? "Tester" : name,
                 LastName = "McTesterson",
@@ -43,6 +44,6 @@ namespace CMS.Domain.Tests.Helpers
             return users;
         }
 
-        
-}
+
+    }
 }

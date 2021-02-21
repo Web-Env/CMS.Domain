@@ -14,7 +14,7 @@ namespace CMS.Domain.Repositories.Tests
         [Fact]
         public async Task GetById_ShouldReturnSingleUser()
         {
-            using(var context = NewContext())
+            using (var context = NewContext())
             {
                 //Arrange
                 var user = await UserFunc.CreateOneUser(context);
@@ -185,7 +185,7 @@ namespace CMS.Domain.Repositories.Tests
                 //Arrange
                 var fetchedNamesCorrect = true;
                 var users = await UserFunc.CreateManyUsers(context);
-                foreach(var user in users)
+                foreach (var user in users)
                 {
                     user.FirstName = $"{user.FirstName} Updated";
                 }

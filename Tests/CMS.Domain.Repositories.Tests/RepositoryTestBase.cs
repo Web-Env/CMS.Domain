@@ -11,7 +11,8 @@ namespace CMS.Domain.Repositories.Tests
         private readonly RepositoryDatabaseFixture _repositoryDatabaseFixture;
         public IRepositoryManager RepositoryManager { get; private set; }
 
-        protected RepositoryTestBase(RepositoryDatabaseFixture fixture) {
+        protected RepositoryTestBase(RepositoryDatabaseFixture fixture)
+        {
             _repositoryDatabaseFixture = fixture;
             RepositoryManager = new RepositoryManager(CreateTestRepositoryContext());
         }
@@ -33,7 +34,7 @@ namespace CMS.Domain.Repositories.Tests
 
         public CMSContext NewContext()
         {
-            var context = _repositoryDatabaseFixture.NewContext(); 
+            var context = _repositoryDatabaseFixture.NewContext();
             RepositoryManager = new RepositoryManager(CreateTestRepositoryContext());
             return context;
         }
