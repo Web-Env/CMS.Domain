@@ -18,18 +18,12 @@ jobs:
     - name: Clean
       run: dotnet clean ./CMS.Domain.sln -- configuration Release && dotnet nuget locals all --clear
     - name: Restore dependencies
-      env:
-        GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
       run: dotnet restore
     - name: Build (Debug)
       run: dotnet build --no-restore
     - name: Test
       run: |
         dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - name: List
-      run: |
-        ls -la ${{ github.workspace }}
-        ls -la ${{ github.workspace }}/Tests/*.Tests
     - name: Publish Coverage
       uses: codacy/codacy-coverage-reporter-action@0.2.0
       with:
