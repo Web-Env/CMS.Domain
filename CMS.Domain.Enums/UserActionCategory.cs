@@ -1,6 +1,6 @@
 ﻿namespace CMS.Domain.Enums
 {
-    public enum ActionCategory
+    public enum UserActionCategory
     {
         Entry,
         Section,
