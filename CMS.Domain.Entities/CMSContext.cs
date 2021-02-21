@@ -179,7 +179,7 @@ namespace CMS.Domain.Entities
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(16)
+                    .HasMaxLength(32)
                     .IsFixedLength(true);
             });
 
