@@ -1,6 +1,6 @@
 ﻿namespace CMS.Domain.Enums
 {
-    public enum Action
+    public enum UserAction
     {
         Create,
         Update,
