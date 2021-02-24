@@ -15,6 +15,6 @@
     <files>
         <file src="..\CMS.Domain.All\bin\Release\net5.0\CMS.Domain.Entities.dll" target="lib\net5.0\CMS.Domain.Entities.dll" />
         <file src="..\CMS.Domain.All\bin\Release\net5.0\CMS.Domain.Repositories.dll" target="lib\net5.0\CMS.Domain.Repositories.dll" />
-      <file src="..\CMS.Domain.All\bin\Release\net5.0\CMS.Domain.Enums.dll" target="lib\net5.0\CMS.Domain.Enums.dll" />
+      <file src="..\CMS.Domain.All\bin\Release\net5.0\CMS.Domain.Enums.dll" target="lib\net5.0\CMS.Domain.Enums.dll" /> 
     </files>
 </package>
