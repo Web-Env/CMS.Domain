@@ -5,7 +5,7 @@
         <version>0.0.1</version>
         <description>Domain logic for the CMS.API project</description>
         <authors>Adam Barry-O'Donovan</authors>
-        <projectUrl>https://github.com/AdamBOD/CMS.Domain</projectUrl>        
+        <projectUrl>https://github.com/Web-Env/CMS.Domain</projectUrl>        
         <repository type="git" url="https://github.com/AdamBOD/CMS.Domain" />
         <tags>Domain All Entities Repositories</tags>
         <dependencies>
