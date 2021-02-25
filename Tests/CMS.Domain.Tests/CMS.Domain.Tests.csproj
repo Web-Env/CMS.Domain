@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CMS.Domain.Entities\CMS.Domain.Entities.csproj" />
+    <ProjectReference Include="..\..\CMS.Domain.Enums\CMS.Domain.Enums.csproj" />
     <ProjectReference Include="..\..\CMS.Domain.Repositories\CMS.Domain.Repositories.csproj" />
   </ItemGroup>
 
