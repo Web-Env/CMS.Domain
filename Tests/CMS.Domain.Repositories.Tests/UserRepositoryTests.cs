@@ -146,7 +146,7 @@ namespace CMS.Domain.Repositories.Tests
                 await RepositoryManager.UserRepository.AddRangeAsync(users);
                 var userIds = users.Select(u => u.Id);
                 var fetchedUserIds = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.Id);
-                fetchedIdsCorrect = HelperBase.CheckListsMatch<Guid>(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
+                fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
 
                 //Assert
                 Assert.True(fetchedIdsCorrect);
