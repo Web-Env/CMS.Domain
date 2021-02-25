@@ -1,5 +1,6 @@
 ﻿using CMS.Domain.Tests.Funcs;
 using CMS.Domain.Tests.Helpers;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -145,13 +146,7 @@ namespace CMS.Domain.Repositories.Tests
                 await RepositoryManager.UserRepository.AddRangeAsync(users);
                 var userIds = users.Select(u => u.Id);
                 var fetchedUserIds = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.Id);
-                foreach (var userId in userIds)
-                {
-                    if (!fetchedUserIds.Contains(userId))
-                    {
-                        fetchedIdsCorrect = false;
-                    }
-                }
+                fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
 
                 //Assert
                 Assert.True(fetchedIdsCorrect);
@@ -195,13 +190,7 @@ namespace CMS.Domain.Repositories.Tests
                 var userIds = users.Select(u => u.Id);
                 var userFirstNames = users.Select(u => u.FirstName);
                 var fetchedUserFirstNames = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.FirstName);
-                foreach (var userFirstName in userFirstNames)
-                {
-                    if (!fetchedUserFirstNames.Contains(userFirstName))
-                    {
-                        fetchedNamesCorrect = false;
-                    }
-                }
+                fetchedNamesCorrect = HelperBase.CheckListsMatch(userFirstNames.ToHashSet(), fetchedUserFirstNames.ToHashSet());
 
                 //Assert
                 Assert.True(fetchedNamesCorrect);
