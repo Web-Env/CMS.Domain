@@ -25,9 +25,9 @@ namespace CMS.Domain.Tests.Funcs
             return await context.AuditLogs.FindAsync(id);
         }
 
-        public static async Task<List<AuditLog>> CreateManyAuditLogs(CMSContext context)
+        public static async Task<List<AuditLog>> CreateManyAuditLogs(CMSContext context, Guid userId)
         {
-            var auditLogs = AuditLogHelper.CreateManyAuditLogObject();
+            var auditLogs = AuditLogHelper.CreateManyAuditLogObject(userId);
 
             context.AuditLogs.AddRange(auditLogs);
             await context.SaveChangesAsync().ConfigureAwait(false);

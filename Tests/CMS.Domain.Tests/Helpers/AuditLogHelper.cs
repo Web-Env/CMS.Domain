@@ -21,14 +21,13 @@ namespace CMS.Domain.Tests.Helpers
             };
         }
 
-        public static List<AuditLog> CreateManyAuditLogObject()
+        public static List<AuditLog> CreateManyAuditLogObject(Guid userId)
         {
             var auditLogs = new List<AuditLog>();
-            var users = UserHelper.CreateManyUserObjects();
 
-            foreach (User user in users) 
+            for (var i=0; i < 10; i++)
             {
-                auditLogs.Add(CreateOneAuditLogObject(user.Id));
+                auditLogs.Add(CreateOneAuditLogObject(userId));
             }
 
             return auditLogs;

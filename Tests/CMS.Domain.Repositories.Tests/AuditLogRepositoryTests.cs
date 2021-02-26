@@ -11,12 +11,7 @@ namespace CMS.Domain.Repositories.Tests
     [Trait("Category", "Unit")]
     public class AuditLogRepositoryTests : RepositoryTestBase
     {
-        private readonly User _user;
-
-        public AuditLogRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture)
-        {
-            _user = AsyncContext.Run(() => UserFunc.CreateOneUser(NewContext()));
-        }
+        public AuditLogRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture) { }
 
         [Fact]
         public async Task GetById_ShouldReturnSingleAuditLog()
@@ -24,13 +19,11 @@ namespace CMS.Domain.Repositories.Tests
             using (var context = NewContext())
             {
                 //Arrange
-                System.Diagnostics.Debug.WriteLine("\n");
-                System.Diagnostics.Debug.WriteLine(_user.Id);
-                System.Diagnostics.Debug.WriteLine("\n");
-                var auditLog = await AuditLogFunc.CreateOneAuditLog(context, _user.Id);
+                var user = await UserFunc.CreateOneUser(context);
+                var auditLog = await AuditLogFunc.CreateOneAuditLog(context, user.Id);
 
                 //Act
-                var fetchedAuditLog = await RepositoryManager.AuditLogRepository.GetByIdAsync(_user.Id);
+                var fetchedAuditLog = await RepositoryManager.AuditLogRepository.GetByIdAsync(auditLog.Id);
 
                 //Assert
                 Assert.Equal(auditLog.Id, fetchedAuditLog.Id);
@@ -44,7 +37,8 @@ namespace CMS.Domain.Repositories.Tests
             {
                 //Arrange
                 var fetchedIdsCorrect = false;
-                var auditLogsIds = (await AuditLogFunc.CreateManyAuditLogs(context)).Select(a => a.Id);
+                var user = await UserFunc.CreateOneUser(context);
+                var auditLogsIds = (await AuditLogFunc.CreateManyAuditLogs(context, user.Id)).Select(a => a.Id);
 
                 //Act
                 var fetchedAuditLogsIds = (await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogsIds)).Select(a => a.Id);
