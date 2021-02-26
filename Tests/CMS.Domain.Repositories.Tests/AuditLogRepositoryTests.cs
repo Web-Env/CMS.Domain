@@ -1,7 +1,5 @@
-﻿using CMS.Domain.Entities;
-using CMS.Domain.Tests.Funcs;
-using Nito.AsyncEx;
-using System;
+﻿using CMS.Domain.Tests.Funcs;
+using CMS.Domain.Tests.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -38,24 +36,15 @@ namespace CMS.Domain.Repositories.Tests
                 //Arrange
                 var fetchedIdsCorrect = false;
                 var user = await UserFunc.CreateOneUser(context);
-                var auditLogsIds = (await AuditLogFunc.CreateManyAuditLogs(context, user.Id)).Select(a => a.Id);
+                var auditLogIds = (await AuditLogFunc.CreateManyAuditLogs(context, user.Id)).Select(a => a.Id);
 
                 //Act
-                var fetchedAuditLogsIds = (await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogsIds)).Select(a => a.Id);
-                foreach (var auditLogsId in auditLogsIds)
-                {
-                    if (!fetchedAuditLogsIds.Contains(auditLogsId))
-                    {
-                        fetchedIdsCorrect = false;
-                    }
-                }
+                var fetchedAuditLogsIds = (await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogIds)).Select(a => a.Id);
+                fetchedIdsCorrect = HelperBase.CheckListsMatch(auditLogIds.ToHashSet(), fetchedAuditLogsIds.ToHashSet());
 
                 //Assert
                 Assert.True(fetchedIdsCorrect);
             }
         }
-
-
-
     }
 }

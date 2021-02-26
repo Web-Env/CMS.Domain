@@ -58,13 +58,7 @@ namespace CMS.Domain.Repositories.Tests
 
             //Act
             var fetchedUserIds = (await RepositoryManager.UserRepository.GetPageAsync(0, 25)).Select(u => u.Id);
-            foreach (var userId in userIds)
-            {
-                if (!fetchedUserIds.Contains(userId))
-                {
-                    fetchedIdsCorrect = false;
-                }
-            }
+            fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
 
             //Assert
             Assert.True(fetchedIdsCorrect);
@@ -94,13 +88,7 @@ namespace CMS.Domain.Repositories.Tests
 
             //Act
             var fetchedUserIds = (await RepositoryManager.UserRepository.FindAsync(u => userIds.Contains(u.Id))).Select(u => u.Id);
-            foreach (var userId in userIds)
-            {
-                if (!fetchedUserIds.Contains(userId))
-                {
-                    fetchedIdsCorrect = false;
-                }
-            }
+            fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
 
             //Assert
             Assert.True(fetchedIdsCorrect);
