@@ -14,7 +14,7 @@ namespace CMS.Domain.Tests.Helpers
                 FirstName = string.IsNullOrWhiteSpace(name) ? "Tester" : name,
                 LastName = "McTesterson",
                 Email = string.IsNullOrWhiteSpace(name) ? "Tester.McTesterson@testing.com" : $"{name}.McTesterson@testing.com",
-                Password = Convert.FromBase64String("R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="),
+                Password = "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==",
                 IsAdmin = false,
                 CreatedBy = Guid.Empty,
                 CreatedOn = DateTime.Now,
