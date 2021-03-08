@@ -56,12 +56,10 @@ namespace CMS.Domain.Repositories.Tests
                     }
                 }
 
-                //Assert
-                Assert.True(fetchedIdsCorrect);
-            }
+            //Assert
+            Assert.True(fetchedIdsCorrect);
         }
 
-
-
+        
     }
 }
