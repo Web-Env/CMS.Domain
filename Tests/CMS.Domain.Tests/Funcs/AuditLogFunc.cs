@@ -1,5 +1,6 @@
 ﻿using CMS.Domain.Entities;
 using CMS.Domain.Tests.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,14 @@ namespace CMS.Domain.Tests.Funcs
             return await context.AuditLogs.FindAsync(id);
         }
 
+        public static async Task<List<AuditLog>> GetManyAuditLogsById(CMSContext context, IEnumerable<Guid> ids)
+        {
+            return await context.AuditLogs.Where(a => ids.Contains(a.Id)).ToListAsync();
+        }
+
         public static async Task<List<AuditLog>> CreateManyAuditLogs(CMSContext context, Guid userId)
         {
-            var auditLogs = AuditLogHelper.CreateManyAuditLogObject(userId);
+            var auditLogs = AuditLogHelper.CreateManyAuditLogObjects(userId);
 
             context.AuditLogs.AddRange(auditLogs);
             await context.SaveChangesAsync().ConfigureAwait(false);

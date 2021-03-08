@@ -1,4 +1,5 @@
-﻿using CMS.Domain.Tests.Funcs;
+﻿using CMS.Domain.Enums;
+using CMS.Domain.Tests.Funcs;
 using CMS.Domain.Tests.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,12 +40,111 @@ namespace CMS.Domain.Repositories.Tests
             var fetchedAuditLogsIds = (await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogIds)).Select(a => a.Id);
             fetchedIdsCorrect = HelperBase.CheckListsMatch(auditLogIds.ToHashSet(), fetchedAuditLogsIds.ToHashSet());
 
-                //Assert
-                Assert.True(fetchedIdsCorrect);
-            }
+            //Assert
+            Assert.True(fetchedIdsCorrect);
+        }
+
+        [Fact]
+        public async Task GetPage_ShouldReturnAuditLogs()
+        {
+            //Arrange
+            using var context = NewContext();
+            var fetchedIdsCorrect = true;
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogsIds = (await AuditLogFunc.CreateManyAuditLogs(context, user.Id)).Select(a => a.Id);
+
+            //Act
+            var fetchedAuditLogsIds = (await RepositoryManager.AuditLogRepository.GetPageAsync(0, 25)).Select(a => a.Id);
+            fetchedIdsCorrect = HelperBase.CheckListsMatch(auditLogsIds.ToHashSet(), fetchedAuditLogsIds.ToHashSet());
+
+            //Assert
+            Assert.True(fetchedIdsCorrect);
         }
 
 
+        [Fact]
+        public async Task Find_ShouldReturnAuditLogUser()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = (await UserFunc.CreateOneUser(context));
+            var auditLog = (await AuditLogFunc.CreateOneAuditLog(context, user.Id));
 
+            //Act
+            var fetchedAuditLog = await RepositoryManager.AuditLogRepository.FindAsync(a => a.Id == auditLog.Id);
+
+            //Assert
+            Assert.Equal(auditLog.Id, fetchedAuditLog.FirstOrDefault().Id);
+        }
+
+        [Fact]
+        public async Task Find_ShouldReturnManyAuditLogs()
+        {
+            //Arrange
+            using var context = NewContext();
+            var fetchedIdsCorrect = true;
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogIds = (await AuditLogFunc.CreateManyAuditLogs(context, user.Id)).Select(a => a.Id);
+
+            //Act
+            var fetchedAuditLogIds = (await RepositoryManager.AuditLogRepository.FindAsync(a => auditLogIds.Contains(a.Id))).Select(a => a.Id);
+            fetchedIdsCorrect = HelperBase.CheckListsMatch(auditLogIds.ToHashSet(), fetchedAuditLogIds.ToHashSet());
+
+            //Assert
+            Assert.True(fetchedIdsCorrect);
+        }
+
+        [Fact]
+        public async Task Add_ShouldCreateAuditLog()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLog = AuditLogHelper.CreateOneAuditLogObject(user.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.AddAsync(auditLog);
+            var fetchedAuditLog = await AuditLogFunc.GetAuditLogById(context, auditLog.Id);
+
+            //Assert
+            Assert.NotNull(fetchedAuditLog);
+        }
+
+        [Fact]
+        public async Task AddRange_ShouldCreateMultipleAuditLogs()
+        {
+            //Arrange
+            using var context = NewContext();
+            var fetchedIdsCorrect = true;
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogs = AuditLogHelper.CreateManyAuditLogObjects(user.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.AddRangeAsync(auditLogs);
+            var auditLogIds = auditLogs.Select(a => a.Id);
+            var fetchedAuditLogIds = (await AuditLogFunc.GetManyAuditLogsById(context, auditLogIds)).Select(a => a.Id);
+            fetchedIdsCorrect = HelperBase.CheckListsMatch(auditLogIds.ToHashSet(), fetchedAuditLogIds.ToHashSet());
+
+            //Assert
+            Assert.True(fetchedIdsCorrect);
+        }
+
+        [Fact]
+        public async Task Update_ShouldUpdateSingleAuditLog()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLog = await AuditLogFunc.CreateOneAuditLog(context, user.Id);
+            var newActionCategory = (short)UserActionCategory.Section;
+            auditLog.ActionCategory = newActionCategory;
+
+            //Act
+            await RepositoryManager.AuditLogRepository.UpdateAsync(auditLog);
+            var fetchedAuditLog = await AuditLogFunc.GetAuditLogById(context, auditLog.Id);
+
+            //Assert
+            Assert.Equal(newActionCategory, fetchedAuditLog.ActionCategory);
+        }
     }
 }

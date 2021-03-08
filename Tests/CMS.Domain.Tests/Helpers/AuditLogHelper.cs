@@ -21,7 +21,7 @@ namespace CMS.Domain.Tests.Helpers
             };
         }
 
-        public static List<AuditLog> CreateManyAuditLogObject(Guid userId)
+        public static List<AuditLog> CreateManyAuditLogObjects(Guid userId)
         {
             var auditLogs = new List<AuditLog>();
 
