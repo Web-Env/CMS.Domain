@@ -146,5 +146,95 @@ namespace CMS.Domain.Repositories.Tests
             //Assert
             Assert.Equal(newActionCategory, fetchedAuditLog.ActionCategory);
         }
+
+        [Fact]
+        public async Task UpdateRange_ShouldUpdateMultipleUsers()
+        {
+            //Arrange
+            using var context = NewContext();
+            var fetchedAuditLogCorrect = true;
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogs = await AuditLogFunc.CreateManyAuditLogs(context, user.Id);
+            foreach (var auditLog in auditLogs)
+            {
+                auditLog.User.FirstName = $"{auditLog.User.FirstName} Updated";
+            }
+
+            //Act
+            await RepositoryManager.AuditLogRepository.UpdateRangeAsync(auditLogs);
+            var auditLogsIds = auditLogs.Select(a => a.Id);
+            var auditLogsUserFirstNames = auditLogs.Select(a => a.User.FirstName);
+            var fetchedAuditLogUserFirstNames = (await AuditLogFunc.GetManyAuditLogsById(context, auditLogsIds)).Select(a => a.User.FirstName);
+            fetchedAuditLogCorrect = HelperBase.CheckListsMatch(auditLogsUserFirstNames.ToHashSet(), fetchedAuditLogUserFirstNames.ToHashSet());
+
+            //Assert
+            Assert.True(fetchedAuditLogCorrect);
+        }
+
+        [Fact]
+        public async Task Remove_ShouldRemoveSingleAuditLog()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLog = await AuditLogFunc.CreateOneAuditLog(context, user.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.RemoveAsync(auditLog);
+            var fetchedAuditLog = await RepositoryManager.AuditLogRepository.GetByIdAsync(auditLog.Id);
+
+            //Assert
+            Assert.Null(fetchedAuditLog);
+        }
+
+        [Fact]
+        public async Task RemoveById_ShouldRemoveSingleAuditLog()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLog = await AuditLogFunc.CreateOneAuditLog(context, user.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.RemoveByIdAsync(auditLog.Id);
+            var fetchedAuditLog = await RepositoryManager.AuditLogRepository.GetByIdAsync(auditLog.Id);
+
+            //Assert
+            Assert.Null(fetchedAuditLog);
+        }
+
+        [Fact]
+        public async Task RemoveRange_ShouldRemoveMultipleAuditLogs()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogs = await AuditLogFunc.CreateManyAuditLogs(context, user.Id);
+            var auditLogIds = auditLogs.Select(a => a.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.RemoveRangeAsync(auditLogs);
+            var fetchedAuditLogs = await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogIds);
+
+            //Assert
+            Assert.Empty(fetchedAuditLogs);
+        }
+
+        [Fact]
+        public async Task RemoveRangeById_ShouldRemoveMultipleAuditLogs()
+        {
+            //Arrange
+            using var context = NewContext();
+            var user = await UserFunc.CreateOneUser(context);
+            var auditLogs = await AuditLogFunc.CreateManyAuditLogs(context, user.Id);
+            var auditLogIds = auditLogs.Select(a => a.Id);
+
+            //Act
+            await RepositoryManager.AuditLogRepository.RemoveRangeByIdAsync(auditLogIds);
+            var fetchedAuditLogs = await RepositoryManager.AuditLogRepository.GetManyByIdAsync(auditLogIds);
+
+            //Assert
+            Assert.Empty(fetchedAuditLogs);
+        }
     }
 }
