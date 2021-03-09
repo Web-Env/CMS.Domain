@@ -179,8 +179,8 @@ namespace CMS.Domain.Entities
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(32)
-                    .IsFixedLength(true);
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
