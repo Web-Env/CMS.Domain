@@ -48,12 +48,6 @@ namespace CMS.Domain.Entities
                     .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AuditLogs)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AuditLog_User");
             });
 
             modelBuilder.Entity<Entry>(entity =>
@@ -180,7 +174,14 @@ namespace CMS.Domain.Entities
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(60)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.UserSecret)
+                    .IsRequired()
+                    .HasMaxLength(344)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
             });
 
             OnModelCreatingPartial(modelBuilder);
