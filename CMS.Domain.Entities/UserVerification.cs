@@ -5,18 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(PasswordReset))]
-    public partial class PasswordReset
+    [Table(nameof(UserVerification))]
+    public partial class UserVerification
     {
         public Guid Id { get; set; }
         public string Identifier { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public string RequesterAddress { get; set; }
         public bool Active { get; set; }
+        public string RequesterAddress { get; set; }
         public DateTime? UsedOn { get; set; }
-        public string UsedByAddress { get; set; }
+        public string UsedAddress { get; set; }
         public DateTime CreatedOn { get; set; }
-        public DateTime LastUpdatedOn { get; set; }
+        public DateTime LastUpdated { get; set; }
+
+        [NotMapped]
+        public virtual User User { get; set; }
     }
 }

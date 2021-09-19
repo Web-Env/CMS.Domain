@@ -15,6 +15,7 @@ namespace CMS.Domain.Entities
             EntryLastUpdatedByNavigations = new HashSet<Entry>();
             SectionCreatedByNavigations = new HashSet<Section>();
             SectionLastUpdatedByNavigations = new HashSet<Section>();
+            UserVerifications = new HashSet<UserVerification>();
         }
 
         public Guid Id { get; set; }
@@ -38,5 +39,7 @@ namespace CMS.Domain.Entities
         public virtual ICollection<Section> SectionCreatedByNavigations { get; set; }
         [NotMapped]
         public virtual ICollection<Section> SectionLastUpdatedByNavigations { get; set; }
+        [NotMapped]
+        public virtual ICollection<UserVerification> UserVerifications { get; set; }
     }
 }
