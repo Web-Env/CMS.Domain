@@ -22,6 +22,7 @@ namespace CMS.Domain.Entities
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserVerification> UserVerifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -97,21 +98,34 @@ namespace CMS.Domain.Entities
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
 
-                entity.Property(e => e.Active)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
-                entity.Property(e => e.Expiry).HasColumnType("datetime");
+                entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Identifier)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.LastUpdatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.RequesterAddress)
                     .IsRequired()
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ResetIdentifier)
-                    .IsRequired()
-                    .HasMaxLength(32)
+                entity.Property(e => e.UsedByAddress)
+                    .HasMaxLength(15)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UsedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(344)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
             });
 
             modelBuilder.Entity<Section>(entity =>
@@ -182,6 +196,42 @@ namespace CMS.Domain.Entities
                     .HasMaxLength(344)
                     .IsUnicode(false)
                     .IsFixedLength(true);
+            });
+
+            modelBuilder.Entity<UserVerification>(entity =>
+            {
+                entity.ToTable("UserVerification");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Identifier)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.LastUpdated).HasColumnType("datetime");
+
+                entity.Property(e => e.RequesterAddress)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UsedAddress)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UsedOn).HasColumnType("datetime");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserVerifications)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserVerification_User");
             });
 
             OnModelCreatingPartial(modelBuilder);
