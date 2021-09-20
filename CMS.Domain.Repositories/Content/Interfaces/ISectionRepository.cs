@@ -1,6 +1,6 @@
 ﻿using CMS.Domain.Entities;
 
-namespace CMS.Domain.Repositories.Interfaces
+namespace CMS.Domain.Repositories.Content.Interfaces
 {
     public interface ISectionRepository : IRepositoryBase<Section>
     {

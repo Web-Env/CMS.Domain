@@ -17,7 +17,7 @@ namespace CMS.Domain.Entities
         public DateTime? UsedOn { get; set; }
         public string UsedAddress { get; set; }
         public DateTime CreatedOn { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public DateTime LastUpdatedOn { get; set; }
 
         [NotMapped]
         public virtual User User { get; set; }

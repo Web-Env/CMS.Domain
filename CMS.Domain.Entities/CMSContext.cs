@@ -214,7 +214,7 @@ namespace CMS.Domain.Entities
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.LastUpdated).HasColumnType("datetime");
+                entity.Property(e => e.LastUpdatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.RequesterAddress)
                     .IsRequired()

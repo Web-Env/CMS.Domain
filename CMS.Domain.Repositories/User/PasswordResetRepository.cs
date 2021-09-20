@@ -1,8 +1,8 @@
 ﻿using CMS.Domain.Entities;
 using CMS.Domain.Repositories.Contexts;
-using CMS.Domain.Repositories.Interfaces;
+using CMS.Domain.Repositories.User.Interfaces;
 
-namespace CMS.Domain.Repositories
+namespace CMS.Domain.Repositories.User
 {
     public class PasswordResetRepository : RepositoryBase<PasswordReset>, IPasswordResetRepository
     {
