@@ -1,6 +1,5 @@
 ﻿using CMS.Domain.Entities;
 using CMS.Domain.Repositories.Contexts;
-using CMS.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

@@ -1,8 +1,8 @@
 ﻿using CMS.Domain.Entities;
+using CMS.Domain.Repositories.Content.Interfaces;
 using CMS.Domain.Repositories.Contexts;
-using CMS.Domain.Repositories.Interfaces;
 
-namespace CMS.Domain.Repositories
+namespace CMS.Domain.Repositories.Content
 {
     public class EntryRepository : RepositoryBase<Entry>, IEntryRepository
     {

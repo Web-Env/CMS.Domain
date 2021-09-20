@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CMS.Domain.Repositories.Audit.Interfaces;
+using CMS.Domain.Repositories.Content.Interfaces;
+using CMS.Domain.Repositories.User.Interfaces;
+using System;
 
-namespace CMS.Domain.Repositories.Interfaces
+namespace CMS.Domain.Repositories
 {
     public interface IRepositoryManager : IDisposable
     {

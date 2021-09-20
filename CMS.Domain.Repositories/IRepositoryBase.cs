@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace CMS.Domain.Repositories.Interfaces
+namespace CMS.Domain.Repositories
 {
     public interface IRepositoryBase<T> where T : class
     {
