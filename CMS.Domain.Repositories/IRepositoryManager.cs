@@ -16,5 +16,7 @@ namespace CMS.Domain.Repositories
         ISectionRepository SectionRepository { get; }
 
         IUserRepository UserRepository { get; }
+
+        IUserVerificationRepository UserVerificationRepository { get; }
     }
 }
