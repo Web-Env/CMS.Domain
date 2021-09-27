@@ -221,7 +221,7 @@ namespace CMS.Domain.Entities
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UsedAddress)
+                entity.Property(e => e.UsedByAddress)
                     .HasMaxLength(15)
                     .IsUnicode(false);
 

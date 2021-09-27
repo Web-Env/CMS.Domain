@@ -15,7 +15,7 @@ namespace CMS.Domain.Entities
         public bool Active { get; set; }
         public string RequesterAddress { get; set; }
         public DateTime? UsedOn { get; set; }
-        public string UsedAddress { get; set; }
+        public string UsedByAddress { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
 
