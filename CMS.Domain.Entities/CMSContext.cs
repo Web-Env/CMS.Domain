@@ -98,6 +98,10 @@ namespace CMS.Domain.Entities
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
 
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
@@ -203,6 +207,10 @@ namespace CMS.Domain.Entities
                 entity.ToTable("UserVerification");
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 

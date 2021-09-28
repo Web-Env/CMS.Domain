@@ -12,7 +12,7 @@ namespace CMS.Domain.Entities
         public string Identifier { get; set; }
         public Guid UserId { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
         public string RequesterAddress { get; set; }
         public DateTime? UsedOn { get; set; }
         public string UsedByAddress { get; set; }
