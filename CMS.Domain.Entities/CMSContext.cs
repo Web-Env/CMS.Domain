@@ -18,7 +18,7 @@ namespace CMS.Domain.Entities
         }
 
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
-        public virtual DbSet<Entry> Entries { get; set; }
+        public virtual DbSet<Content> Entries { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -51,9 +51,9 @@ namespace CMS.Domain.Entities
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Entry>(entity =>
+            modelBuilder.Entity<Content>(entity =>
             {
-                entity.ToTable("Entry");
+                entity.ToTable("Content");
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
 
@@ -75,21 +75,21 @@ namespace CMS.Domain.Entities
                     .HasMaxLength(250);
 
                 entity.HasOne(d => d.CreatedByNavigation)
-                    .WithMany(p => p.EntryCreatedByNavigations)
+                    .WithMany(p => p.ContentCreatedByNavigations)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Entry_User");
+                    .HasConstraintName("FK_Content_User");
 
                 entity.HasOne(d => d.LastUpdatedByNavigation)
-                    .WithMany(p => p.EntryLastUpdatedByNavigations)
+                    .WithMany(p => p.ContentLastUpdatedByNavigations)
                     .HasForeignKey(d => d.LastUpdatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Entry_User1");
+                    .HasConstraintName("FK_Content_User1");
 
                 entity.HasOne(d => d.Section)
                     .WithMany(p => p.Entries)
                     .HasForeignKey(d => d.SectionId)
-                    .HasConstraintName("FK_Entry_Section");
+                    .HasConstraintName("FK_Content_Section");
             });
 
             modelBuilder.Entity<PasswordReset>(entity =>

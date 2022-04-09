@@ -4,8 +4,8 @@ using CMS.Domain.Repositories.Contexts;
 
 namespace CMS.Domain.Repositories.Content
 {
-    public class EntryRepository : RepositoryBase<Entry>, IEntryRepository
+    public class ContentRepository : RepositoryBase<Entities.Content>, IContentRepository
     {
-        public EntryRepository(CMSRepositoryContext context) : base(context) { }
+        public ContentRepository(CMSRepositoryContext context) : base(context) { }
     }
 }

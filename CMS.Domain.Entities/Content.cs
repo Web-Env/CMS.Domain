@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(Entry))]
-    public partial class Entry
+    [Table(nameof(Content))]
+    public partial class Content
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

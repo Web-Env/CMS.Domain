@@ -2,7 +2,7 @@
 
 namespace CMS.Domain.Repositories.Content.Interfaces
 {
-    public interface IEntryRepository : IRepositoryBase<Entry>
+    public interface IContentRepository : IRepositoryBase<Entities.Content>
     {
     }
 }

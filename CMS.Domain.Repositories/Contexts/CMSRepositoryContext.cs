@@ -9,7 +9,7 @@ namespace CMS.Domain.Repositories.Contexts
 
         public DbSet<AuditLog> AuditLogs { get; set; }
 
-        public DbSet<Entry> Entries { get; set; }
+        public DbSet<Entities.Content> Contents { get; set; }
 
         public DbSet<PasswordReset> PasswordResets { get; set; }
 
