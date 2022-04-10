@@ -11,7 +11,7 @@ namespace CMS.Domain.Entities
     {
         public Section()
         {
-            Entries = new HashSet<Content>();
+            Contents = new HashSet<Content>();
         }
 
         public Guid Id { get; set; }
@@ -28,6 +28,6 @@ namespace CMS.Domain.Entities
         [NotMapped]
         public virtual User LastUpdatedByNavigation { get; set; }
         [NotMapped]
-        public virtual ICollection<Content> Entries { get; set; }
+        public virtual ICollection<Content> Contents { get; set; }
     }
 }
