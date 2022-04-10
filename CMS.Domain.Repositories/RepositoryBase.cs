@@ -38,6 +38,7 @@ namespace CMS.Domain.Repositories
             return await _CMSContext.Set<T>()
                 .Skip(offset)
                 .Take(pageSize)
+                .AsNoTracking()
                 .ToListAsync();
         }
 

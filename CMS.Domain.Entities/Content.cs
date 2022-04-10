@@ -20,11 +20,8 @@ namespace CMS.Domain.Entities
         public DateTime LastUpdatedOn { get; set; }
         public Guid LastUpdatedBy { get; set; }
 
-        [NotMapped]
         public virtual User CreatedByNavigation { get; set; }
-        [NotMapped]
         public virtual User LastUpdatedByNavigation { get; set; }
-        [NotMapped]
         public virtual Section Section { get; set; }
     }
 }

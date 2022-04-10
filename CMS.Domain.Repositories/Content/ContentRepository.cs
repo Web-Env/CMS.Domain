@@ -21,6 +21,7 @@ namespace CMS.Domain.Repositories.Content
                 .Include(c => c.CreatedByNavigation)
                 .Skip(offset)
                 .Take(pageSize)
+                .AsNoTracking()
                 .ToListAsync();
         }
     }
