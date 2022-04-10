@@ -18,7 +18,7 @@ namespace CMS.Domain.Repositories.Content
 
             return await _CMSContext.Set<Entities.Content>()
                 .Include(c => c.Section)
-                .Include(c => c.CreatedByNavigation)
+                //.Include(c => c.CreatedByNavigation)
                 .Skip(offset)
                 .Take(pageSize)
                 .AsNoTracking()
