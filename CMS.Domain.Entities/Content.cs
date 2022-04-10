@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(Content))]
     public partial class Content
     {
         public Guid Id { get; set; }
@@ -21,7 +19,6 @@ namespace CMS.Domain.Entities
         public DateTime LastUpdatedOn { get; set; }
         public Guid LastUpdatedBy { get; set; }
 
-        [NotMapped]
         public virtual User CreatedByNavigation { get; set; }
         public virtual Section Section { get; set; }
     }

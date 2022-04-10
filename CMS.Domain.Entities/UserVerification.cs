@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(UserVerification))]
     public partial class UserVerification
     {
         public Guid Id { get; set; }
