@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
+    [Table(nameof(PasswordReset))]
     public partial class PasswordReset
     {
         public Guid Id { get; set; }
