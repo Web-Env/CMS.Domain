@@ -75,16 +75,10 @@ namespace CMS.Domain.Entities
                     .HasMaxLength(250);
 
                 entity.HasOne(d => d.CreatedByNavigation)
-                    .WithMany(p => p.ContentCreatedByNavigations)
+                    .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Content_User");
-
-                entity.HasOne(d => d.LastUpdatedByNavigation)
-                    .WithMany(p => p.ContentLastUpdatedByNavigations)
-                    .HasForeignKey(d => d.LastUpdatedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Content_User1");
 
                 entity.HasOne(d => d.Section)
                     .WithMany(p => p.Contents)
@@ -152,16 +146,10 @@ namespace CMS.Domain.Entities
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CreatedByNavigation)
-                    .WithMany(p => p.SectionCreatedByNavigations)
+                    .WithMany(p => p.Sections)
                     .HasForeignKey(d => d.CreatedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Section_User");
-
-                entity.HasOne(d => d.LastUpdatedByNavigation)
-                    .WithMany(p => p.SectionLastUpdatedByNavigations)
-                    .HasForeignKey(d => d.LastUpdatedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Section_User1");
             });
 
             modelBuilder.Entity<User>(entity =>

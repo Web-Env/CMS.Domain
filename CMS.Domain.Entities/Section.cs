@@ -22,7 +22,6 @@ namespace CMS.Domain.Entities
         public Guid LastUpdatedBy { get; set; }
 
         public virtual User CreatedByNavigation { get; set; }
-        public virtual User LastUpdatedByNavigation { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
     }
 }
