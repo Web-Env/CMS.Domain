@@ -87,7 +87,7 @@ namespace CMS.Domain.Entities
                     .HasConstraintName("FK_Content_User1");
 
                 entity.HasOne(d => d.Section)
-                    .WithMany(p => p.Entries)
+                    .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.SectionId)
                     .HasConstraintName("FK_Content_Section");
             });
