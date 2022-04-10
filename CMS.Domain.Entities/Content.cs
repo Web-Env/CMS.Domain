@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(Content))]
     public partial class Content
     {
         public Guid Id { get; set; }

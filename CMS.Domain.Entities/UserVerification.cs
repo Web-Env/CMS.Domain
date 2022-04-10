@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(UserVerification))]
     public partial class UserVerification
     {
         public Guid Id { get; set; }
@@ -19,7 +18,6 @@ namespace CMS.Domain.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
 
-        [NotMapped]
         public virtual User User { get; set; }
     }
 }

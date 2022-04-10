@@ -18,7 +18,7 @@ namespace CMS.Domain.Entities
         }
 
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
-        public virtual DbSet<Content> Entries { get; set; }
+        public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -190,7 +190,6 @@ namespace CMS.Domain.Entities
                 entity.Property(e => e.LastUpdatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.Password)
-                    .IsRequired()
                     .HasMaxLength(60)
                     .IsUnicode(false)
                     .IsFixedLength(true);
