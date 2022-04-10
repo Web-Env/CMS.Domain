@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(AuditLog))]
     public partial class AuditLog
     {
         public Guid Id { get; set; }
@@ -14,8 +13,5 @@ namespace CMS.Domain.Entities
         public Guid UserId { get; set; }
         public string UserAddress { get; set; }
         public DateTime OccurredOn { get; set; }
-
-        [NotMapped]
-        public virtual User User { get; set; }
     }
 }

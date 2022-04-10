@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace CMS.Domain.Entities
 {
-    [Table(nameof(User))]
     public partial class User
     {
         public User()
         {
-            EntryCreatedByNavigations = new HashSet<Entry>();
-            EntryLastUpdatedByNavigations = new HashSet<Entry>();
-            SectionCreatedByNavigations = new HashSet<Section>();
-            SectionLastUpdatedByNavigations = new HashSet<Section>();
+            Contents = new HashSet<Content>();
+            Sections = new HashSet<Section>();
             UserVerifications = new HashSet<UserVerification>();
         }
 
@@ -31,15 +27,8 @@ namespace CMS.Domain.Entities
         public DateTime LastUpdatedOn { get; set; }
         public Guid LastUpdatedBy { get; set; }
 
-        [NotMapped]
-        public virtual ICollection<Entry> EntryCreatedByNavigations { get; set; }
-        [NotMapped]
-        public virtual ICollection<Entry> EntryLastUpdatedByNavigations { get; set; }
-        [NotMapped]
-        public virtual ICollection<Section> SectionCreatedByNavigations { get; set; }
-        [NotMapped]
-        public virtual ICollection<Section> SectionLastUpdatedByNavigations { get; set; }
-        [NotMapped]
+        public virtual ICollection<Content> Contents { get; set; }
+        public virtual ICollection<Section> Sections { get; set; }
         public virtual ICollection<UserVerification> UserVerifications { get; set; }
     }
 }
