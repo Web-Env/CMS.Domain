@@ -10,235 +10,235 @@ namespace CMS.Domain.Repositories.Tests
     [Trait("Category", "Unit")]
     public class UserRepositoryTests : RepositoryTestBase
     {
-        public UserRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture) { }
+        //public UserRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture) { }
 
-        [Fact (Skip ="Ignore")]
-        public async Task GetById_ShouldReturnSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = await UserFunc.CreateOneUser(context);
+        //[Fact (Skip ="Ignore")]
+        //public async Task GetById_ShouldReturnSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = await UserFunc.CreateOneUser(context);
 
-            //Act
-            var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
+        //    //Act
+        //    var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
 
-            //Assert
-            Assert.Equal(user.Id, fetchedUser.Id);
-        }
+        //    //Assert
+        //    Assert.Equal(user.Id, fetchedUser.Id);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task GetManyById_ShouldReturnManyUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var fetchedIdsCorrect = true;
-            var userIds = (await UserFunc.CreateManyUsers(context)).Select(u => u.Id);
+        //[Fact(Skip = "Ignore")]
+        //public async Task GetManyById_ShouldReturnManyUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var fetchedIdsCorrect = true;
+        //    var userIds = (await UserFunc.CreateManyUsers(context)).Select(u => u.Id);
 
-            //Act
-            var fetchedUserIds = (await RepositoryManager.UserRepository.GetManyByIdAsync(userIds)).Select(u => u.Id);
-            foreach (var userId in userIds)
-            {
-                if (!fetchedUserIds.Contains(userId))
-                {
-                    fetchedIdsCorrect = false;
-                }
-            }
+        //    //Act
+        //    var fetchedUserIds = (await RepositoryManager.UserRepository.GetManyByIdAsync(userIds)).Select(u => u.Id);
+        //    foreach (var userId in userIds)
+        //    {
+        //        if (!fetchedUserIds.Contains(userId))
+        //        {
+        //            fetchedIdsCorrect = false;
+        //        }
+        //    }
 
-            //Assert
-            Assert.True(fetchedIdsCorrect);
-        }
+        //    //Assert
+        //    Assert.True(fetchedIdsCorrect);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task GetPage_ShouldReturnUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var fetchedIdsCorrect = true;
-            var userIds = (await UserFunc.CreateUsersPage(context)).Select(u => u.Id);
+        //[Fact(Skip = "Ignore")]
+        //public async Task GetPage_ShouldReturnUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var fetchedIdsCorrect = true;
+        //    var userIds = (await UserFunc.CreateUsersPage(context)).Select(u => u.Id);
 
-            //Act
-            var fetchedUserIds = (await RepositoryManager.UserRepository.GetPageAsync(0, 25)).Select(u => u.Id);
-            foreach (var userId in userIds)
-            {
-                if (!fetchedUserIds.Contains(userId))
-                {
-                    fetchedIdsCorrect = false;
-                }
-            }
+        //    //Act
+        //    var fetchedUserIds = (await RepositoryManager.UserRepository.GetPageAsync(0, 25)).Select(u => u.Id);
+        //    foreach (var userId in userIds)
+        //    {
+        //        if (!fetchedUserIds.Contains(userId))
+        //        {
+        //            fetchedIdsCorrect = false;
+        //        }
+        //    }
 
-            //Assert
-            Assert.True(fetchedIdsCorrect);
-        }
+        //    //Assert
+        //    Assert.True(fetchedIdsCorrect);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task Find_ShouldReturnSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = (await UserFunc.CreateOneUser(context));
+        //[Fact(Skip = "Ignore")]
+        //public async Task Find_ShouldReturnSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = (await UserFunc.CreateOneUser(context));
 
-            //Act
-            var fetchedUser = await RepositoryManager.UserRepository.FindAsync(u => u.Id == user.Id);
+        //    //Act
+        //    var fetchedUser = await RepositoryManager.UserRepository.FindAsync(u => u.Id == user.Id);
 
-            //Assert
-            Assert.Equal(user.Id, fetchedUser.FirstOrDefault().Id);
-        }
+        //    //Assert
+        //    Assert.Equal(user.Id, fetchedUser.FirstOrDefault().Id);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task Find_ShouldReturnManyUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var fetchedIdsCorrect = true;
-            var userIds = (await UserFunc.CreateManyUsers(context)).Select(u => u.Id);
+        //[Fact(Skip = "Ignore")]
+        //public async Task Find_ShouldReturnManyUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var fetchedIdsCorrect = true;
+        //    var userIds = (await UserFunc.CreateManyUsers(context)).Select(u => u.Id);
 
-            //Act
-            var fetchedUserIds = (await RepositoryManager.UserRepository.FindAsync(u => userIds.Contains(u.Id))).Select(u => u.Id);
-            foreach (var userId in userIds)
-            {
-                if (!fetchedUserIds.Contains(userId))
-                {
-                    fetchedIdsCorrect = false;
-                }
-            }
+        //    //Act
+        //    var fetchedUserIds = (await RepositoryManager.UserRepository.FindAsync(u => userIds.Contains(u.Id))).Select(u => u.Id);
+        //    foreach (var userId in userIds)
+        //    {
+        //        if (!fetchedUserIds.Contains(userId))
+        //        {
+        //            fetchedIdsCorrect = false;
+        //        }
+        //    }
 
-            //Assert
-            Assert.True(fetchedIdsCorrect);
-        }
+        //    //Assert
+        //    Assert.True(fetchedIdsCorrect);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task Add_ShouldCreateSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = UserHelper.CreateOneUserObject();
+        //[Fact(Skip = "Ignore")]
+        //public async Task Add_ShouldCreateSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = UserHelper.CreateOneUserObject();
 
-            //Act
-            await RepositoryManager.UserRepository.AddAsync(user);
-            var fetchedUser = await UserFunc.GetUserById(context, user.Id);
+        //    //Act
+        //    await RepositoryManager.UserRepository.AddAsync(user);
+        //    var fetchedUser = await UserFunc.GetUserById(context, user.Id);
 
-            //Assert
-            Assert.NotNull(fetchedUser);
-        }
+        //    //Assert
+        //    Assert.NotNull(fetchedUser);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task AddRange_ShouldCreateMultipleUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var fetchedIdsCorrect = true;
-            var users = UserHelper.CreateManyUserObjects();
+        //[Fact(Skip = "Ignore")]
+        //public async Task AddRange_ShouldCreateMultipleUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var fetchedIdsCorrect = true;
+        //    var users = UserHelper.CreateManyUserObjects();
 
-            //Act
-            await RepositoryManager.UserRepository.AddRangeAsync(users);
-            var userIds = users.Select(u => u.Id);
-            var fetchedUserIds = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.Id);
-            fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
+        //    //Act
+        //    await RepositoryManager.UserRepository.AddRangeAsync(users);
+        //    var userIds = users.Select(u => u.Id);
+        //    var fetchedUserIds = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.Id);
+        //    fetchedIdsCorrect = HelperBase.CheckListsMatch(userIds.ToHashSet(), fetchedUserIds.ToHashSet());
 
-            //Assert
-            Assert.True(fetchedIdsCorrect);
-        }
+        //    //Assert
+        //    Assert.True(fetchedIdsCorrect);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task Update_ShouldUpdateSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = await UserFunc.CreateOneUser(context);
-            var newUserFirstName = "New Tester";
-            user.FirstName = newUserFirstName;
+        //[Fact(Skip = "Ignore")]
+        //public async Task Update_ShouldUpdateSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = await UserFunc.CreateOneUser(context);
+        //    var newUserFirstName = "New Tester";
+        //    user.FirstName = newUserFirstName;
 
-            //Act
-            await RepositoryManager.UserRepository.UpdateAsync(user);
-            var fetchedUser = await UserFunc.GetUserById(context, user.Id);
+        //    //Act
+        //    await RepositoryManager.UserRepository.UpdateAsync(user);
+        //    var fetchedUser = await UserFunc.GetUserById(context, user.Id);
 
-            //Assert
-            Assert.Equal(newUserFirstName, fetchedUser.FirstName);
-        }
+        //    //Assert
+        //    Assert.Equal(newUserFirstName, fetchedUser.FirstName);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task UpdateRange_ShouldUpdateMultipleUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var fetchedNamesCorrect = true;
-            var users = await UserFunc.CreateManyUsers(context);
-            foreach (var user in users)
-            {
-                user.FirstName = $"{user.FirstName} Updated";
-            }
+        //[Fact(Skip = "Ignore")]
+        //public async Task UpdateRange_ShouldUpdateMultipleUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var fetchedNamesCorrect = true;
+        //    var users = await UserFunc.CreateManyUsers(context);
+        //    foreach (var user in users)
+        //    {
+        //        user.FirstName = $"{user.FirstName} Updated";
+        //    }
 
-            //Act
-            await RepositoryManager.UserRepository.UpdateRangeAsync(users);
-            var userIds = users.Select(u => u.Id);
-            var userFirstNames = users.Select(u => u.FirstName);
-            var fetchedUserFirstNames = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.FirstName);
-            fetchedNamesCorrect = HelperBase.CheckListsMatch(userFirstNames.ToHashSet(), fetchedUserFirstNames.ToHashSet());
+        //    //Act
+        //    await RepositoryManager.UserRepository.UpdateRangeAsync(users);
+        //    var userIds = users.Select(u => u.Id);
+        //    var userFirstNames = users.Select(u => u.FirstName);
+        //    var fetchedUserFirstNames = (await UserFunc.GetManyUsersById(context, userIds)).Select(u => u.FirstName);
+        //    fetchedNamesCorrect = HelperBase.CheckListsMatch(userFirstNames.ToHashSet(), fetchedUserFirstNames.ToHashSet());
 
-            //Assert
-            Assert.True(fetchedNamesCorrect);
-        }
+        //    //Assert
+        //    Assert.True(fetchedNamesCorrect);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task Remove_ShouldRemoveSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = await UserFunc.CreateOneUser(context);
+        //[Fact(Skip = "Ignore")]
+        //public async Task Remove_ShouldRemoveSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = await UserFunc.CreateOneUser(context);
 
-            //Act
-            await RepositoryManager.UserRepository.RemoveAsync(user);
-            var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
+        //    //Act
+        //    await RepositoryManager.UserRepository.RemoveAsync(user);
+        //    var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
 
-            //Assert
-            Assert.Null(fetchedUser);
-        }
+        //    //Assert
+        //    Assert.Null(fetchedUser);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task RemoveById_ShouldRemoveSingleUser()
-        {
-            //Arrange
-            using var context = NewContext();
-            var user = await UserFunc.CreateOneUser(context);
+        //[Fact(Skip = "Ignore")]
+        //public async Task RemoveById_ShouldRemoveSingleUser()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var user = await UserFunc.CreateOneUser(context);
 
-            //Act
-            await RepositoryManager.UserRepository.RemoveByIdAsync(user.Id);
-            var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
+        //    //Act
+        //    await RepositoryManager.UserRepository.RemoveByIdAsync(user.Id);
+        //    var fetchedUser = await RepositoryManager.UserRepository.GetByIdAsync(user.Id);
 
-            //Assert
-            Assert.Null(fetchedUser);
-        }
+        //    //Assert
+        //    Assert.Null(fetchedUser);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task RemoveRange_ShouldRemoveMultipleUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var users = await UserFunc.CreateManyUsers(context);
-            var userIds = users.Select(u => u.Id);
+        //[Fact(Skip = "Ignore")]
+        //public async Task RemoveRange_ShouldRemoveMultipleUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var users = await UserFunc.CreateManyUsers(context);
+        //    var userIds = users.Select(u => u.Id);
 
-            //Act
-            await RepositoryManager.UserRepository.RemoveRangeAsync(users);
-            var fetchedUser = await RepositoryManager.UserRepository.GetManyByIdAsync(userIds);
+        //    //Act
+        //    await RepositoryManager.UserRepository.RemoveRangeAsync(users);
+        //    var fetchedUser = await RepositoryManager.UserRepository.GetManyByIdAsync(userIds);
 
-            //Assert
-            Assert.Empty(fetchedUser);
-        }
+        //    //Assert
+        //    Assert.Empty(fetchedUser);
+        //}
 
-        [Fact(Skip = "Ignore")]
-        public async Task RemoveRangeById_ShouldRemoveMultipleUsers()
-        {
-            //Arrange
-            using var context = NewContext();
-            var users = await UserFunc.CreateManyUsers(context);
-            var userIds = users.Select(u => u.Id);
+        //[Fact(Skip = "Ignore")]
+        //public async Task RemoveRangeById_ShouldRemoveMultipleUsers()
+        //{
+        //    //Arrange
+        //    using var context = NewContext();
+        //    var users = await UserFunc.CreateManyUsers(context);
+        //    var userIds = users.Select(u => u.Id);
 
-            //Act
-            await RepositoryManager.UserRepository.RemoveRangeByIdAsync(userIds);
-            var fetchedUser = await RepositoryManager.UserRepository.GetManyByIdAsync(userIds);
+        //    //Act
+        //    await RepositoryManager.UserRepository.RemoveRangeByIdAsync(userIds);
+        //    var fetchedUser = await RepositoryManager.UserRepository.GetManyByIdAsync(userIds);
 
-            //Assert
-            Assert.Empty(fetchedUser);
-        }
+        //    //Assert
+        //    Assert.Empty(fetchedUser);
+        //}
     }
 }

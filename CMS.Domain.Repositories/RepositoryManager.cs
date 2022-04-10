@@ -1,4 +1,5 @@
-﻿using CMS.Domain.Repositories.Audit;
+﻿using CMS.Domain.Entities;
+using CMS.Domain.Repositories.Audit;
 using CMS.Domain.Repositories.Audit.Interfaces;
 using CMS.Domain.Repositories.Content;
 using CMS.Domain.Repositories.Content.Interfaces;
@@ -10,7 +11,7 @@ namespace CMS.Domain.Repositories
 {
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly CMSRepositoryContext _CMSContext;
+        private readonly CMSContext _CMSContext;
 
         public IAuditLogRepository AuditLogRepository { get; private set; }
         public IContentRepository ContentRepository { get; private set; }
@@ -19,7 +20,7 @@ namespace CMS.Domain.Repositories
         public IUserRepository UserRepository { get; private set; }
         public IUserVerificationRepository UserVerificationRepository { get; private set; }
 
-        public RepositoryManager(CMSRepositoryContext context)
+        public RepositoryManager(CMSContext context)
         {
             _CMSContext = context;
 

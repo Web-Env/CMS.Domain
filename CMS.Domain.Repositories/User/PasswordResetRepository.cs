@@ -9,7 +9,7 @@ namespace CMS.Domain.Repositories.User
 {
     public class PasswordResetRepository : RepositoryBase<PasswordReset>, IPasswordResetRepository
     {
-        public PasswordResetRepository(CMSRepositoryContext context) : base(context) { }
+        public PasswordResetRepository(CMSContext context) : base(context) { }
 
         public async Task<PasswordReset> FindByIdentifierAsync(string resetIdentifier)
         {

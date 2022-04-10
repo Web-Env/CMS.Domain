@@ -10,7 +10,7 @@ namespace CMS.Domain.Repositories.Content
 {
     public class SectionRepository : RepositoryBase<Section>, ISectionRepository
     {
-        public SectionRepository(CMSRepositoryContext context) : base(context) { }
+        public SectionRepository(CMSContext context) : base(context) { }
 
         public async new Task<IEnumerable<Section>> GetPageAsync(int pageNumber, int pageSize)
         {

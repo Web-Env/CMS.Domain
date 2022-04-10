@@ -9,7 +9,7 @@ namespace CMS.Domain.Repositories.User
 {
     public class UserVerificationRepository : RepositoryBase<UserVerification>, IUserVerificationRepository
     {
-        public UserVerificationRepository(CMSRepositoryContext context) : base(context) { }
+        public UserVerificationRepository(CMSContext context) : base(context) { }
 
         public async Task<UserVerification> FindByIdentifierAsync(string verificationIdentifier)
         {
