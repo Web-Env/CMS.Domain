@@ -13,7 +13,7 @@ namespace CMS.Domain.Repositories
         private readonly CMSRepositoryContext _CMSContext;
 
         public IAuditLogRepository AuditLogRepository { get; private set; }
-        public IEntryRepository EntryRepository { get; private set; }
+        public IContentRepository ContentRepository { get; private set; }
         public IPasswordResetRepository PasswordResetRepository { get; private set; }
         public ISectionRepository SectionRepository { get; private set; }
         public IUserRepository UserRepository { get; private set; }
@@ -24,7 +24,7 @@ namespace CMS.Domain.Repositories
             _CMSContext = context;
 
             AuditLogRepository = new AuditLogRepository(_CMSContext);
-            EntryRepository = new EntryRepository(_CMSContext);
+            ContentRepository = new ContentRepository(_CMSContext);
             PasswordResetRepository = new PasswordResetRepository(_CMSContext);
             SectionRepository = new SectionRepository(_CMSContext);
             UserRepository = new UserRepository(_CMSContext);

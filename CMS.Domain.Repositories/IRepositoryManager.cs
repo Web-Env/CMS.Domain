@@ -9,7 +9,7 @@ namespace CMS.Domain.Repositories
     {
         IAuditLogRepository AuditLogRepository { get; }
 
-        IEntryRepository EntryRepository { get; }
+        IContentRepository ContentRepository { get; }
 
         IPasswordResetRepository PasswordResetRepository { get; }
 

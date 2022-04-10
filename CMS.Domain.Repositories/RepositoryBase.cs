@@ -16,6 +16,11 @@ namespace CMS.Domain.Repositories
             _CMSContext = context;
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _CMSContext.Set<T>().ToListAsync();
+        }
+
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await _CMSContext.Set<T>().FindAsync(id);
@@ -33,6 +38,7 @@ namespace CMS.Domain.Repositories
             return await _CMSContext.Set<T>()
                 .Skip(offset)
                 .Take(pageSize)
+                .AsNoTracking()
                 .ToListAsync();
         }
 

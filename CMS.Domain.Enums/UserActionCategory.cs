@@ -2,7 +2,7 @@
 {
     public enum UserActionCategory
     {
-        Entry,
+        Content,
         Section,
         Announcement,
         User,

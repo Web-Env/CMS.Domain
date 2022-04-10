@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace CMS.Domain.Repositories.Content
 {
-    public class SectionRepository : RepositoryBase<Section>, ISectionRepository
+    public class ContentRepository : RepositoryBase<Entities.Content>, IContentRepository
     {
-        public SectionRepository(CMSRepositoryContext context) : base(context) { }
+        public ContentRepository(CMSRepositoryContext context) : base(context) { }
 
-        public async new Task<IEnumerable<Section>> GetPageAsync(int pageNumber, int pageSize)
+        public async new Task<IEnumerable<Entities.Content>> GetPageAsync(int pageNumber, int pageSize)
         {
             var offset = pageSize * (pageNumber - 1);
 
-            return await _CMSContext.Set<Section>()
+            return await _CMSContext.Set<Entities.Content>()
+                .Include(c => c.Section)
                 //.Include(c => c.CreatedByNavigation)
                 .Skip(offset)
                 .Take(pageSize)

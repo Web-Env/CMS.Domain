@@ -12,7 +12,7 @@ namespace CMS.Domain.Repositories.Tests
     {
         public UserRepositoryTests(RepositoryDatabaseFixture fixture) : base(fixture) { }
 
-        [Fact]
+        [Fact (Skip ="Ignore")]
         public async Task GetById_ShouldReturnSingleUser()
         {
             //Arrange
@@ -26,7 +26,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Equal(user.Id, fetchedUser.Id);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task GetManyById_ShouldReturnManyUsers()
         {
             //Arrange
@@ -48,7 +48,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.True(fetchedIdsCorrect);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task GetPage_ShouldReturnUsers()
         {
             //Arrange
@@ -70,7 +70,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.True(fetchedIdsCorrect);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task Find_ShouldReturnSingleUser()
         {
             //Arrange
@@ -84,7 +84,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Equal(user.Id, fetchedUser.FirstOrDefault().Id);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task Find_ShouldReturnManyUsers()
         {
             //Arrange
@@ -106,7 +106,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.True(fetchedIdsCorrect);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task Add_ShouldCreateSingleUser()
         {
             //Arrange
@@ -121,7 +121,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.NotNull(fetchedUser);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task AddRange_ShouldCreateMultipleUsers()
         {
             //Arrange
@@ -139,7 +139,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.True(fetchedIdsCorrect);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task Update_ShouldUpdateSingleUser()
         {
             //Arrange
@@ -156,7 +156,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Equal(newUserFirstName, fetchedUser.FirstName);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task UpdateRange_ShouldUpdateMultipleUsers()
         {
             //Arrange
@@ -179,7 +179,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.True(fetchedNamesCorrect);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task Remove_ShouldRemoveSingleUser()
         {
             //Arrange
@@ -194,7 +194,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Null(fetchedUser);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task RemoveById_ShouldRemoveSingleUser()
         {
             //Arrange
@@ -209,7 +209,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Null(fetchedUser);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task RemoveRange_ShouldRemoveMultipleUsers()
         {
             //Arrange
@@ -225,7 +225,7 @@ namespace CMS.Domain.Repositories.Tests
             Assert.Empty(fetchedUser);
         }
 
-        [Fact]
+        [Fact(Skip = "Ignore")]
         public async Task RemoveRangeById_ShouldRemoveMultipleUsers()
         {
             //Arrange
