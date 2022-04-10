@@ -17,7 +17,7 @@ namespace CMS.Domain.Repositories.Content
             var offset = pageSize * (pageNumber - 1);
 
             return await _CMSContext.Set<Section>()
-                //.Include(c => c.CreatedByNavigation)
+                .Include(c => c.CreatedByNavigation)
                 .Skip(offset)
                 .Take(pageSize)
                 .AsNoTracking()
