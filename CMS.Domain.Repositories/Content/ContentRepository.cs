@@ -24,7 +24,7 @@ namespace CMS.Domain.Repositories.Content
                 .ToListAsync();
         }
 
-        public async new Task<Entities.Content> GetByPathAsync(string contentPath)
+        public async Task<Entities.Content> GetByPathAsync(string contentPath)
         {
             return await _CMSContext.Set<Entities.Content>()
                 .Where(c => c.Path == contentPath)
