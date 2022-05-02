@@ -11,6 +11,8 @@ namespace CMS.Domain.Repositories
 
         IContentRepository ContentRepository { get; }
 
+        IContentTimeTrackingRepository ContentTimeTrackingRepository { get; }
+
         IPasswordResetRepository PasswordResetRepository { get; }
 
         ISectionRepository SectionRepository { get; }
