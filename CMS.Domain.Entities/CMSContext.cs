@@ -19,6 +19,7 @@ namespace CMS.Domain.Entities
 
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
+        public virtual DbSet<ContentTimeTracking> ContentTimeTrackings { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -84,6 +85,27 @@ namespace CMS.Domain.Entities
                     .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.SectionId)
                     .HasConstraintName("FK_Content_Section");
+            });
+
+            modelBuilder.Entity<ContentTimeTracking>(entity =>
+            {
+                entity.ToTable("ContentTimeTracking");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+
+                entity.Property(e => e.LastSeen).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Content)
+                    .WithMany(p => p.ContentTimeTrackings)
+                    .HasForeignKey(d => d.ContentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ContentTimeTracking_Content");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ContentTimeTrackings)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ContentTimeTracking_User");
             });
 
             modelBuilder.Entity<PasswordReset>(entity =>

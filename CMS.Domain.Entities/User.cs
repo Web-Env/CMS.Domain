@@ -9,6 +9,7 @@ namespace CMS.Domain.Entities
     {
         public User()
         {
+            ContentTimeTrackings = new HashSet<ContentTimeTracking>();
             Contents = new HashSet<Content>();
             Sections = new HashSet<Section>();
             UserVerifications = new HashSet<UserVerification>();
@@ -27,6 +28,7 @@ namespace CMS.Domain.Entities
         public DateTime LastUpdatedOn { get; set; }
         public Guid LastUpdatedBy { get; set; }
 
+        public virtual ICollection<ContentTimeTracking> ContentTimeTrackings { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
         public virtual ICollection<Section> Sections { get; set; }
         public virtual ICollection<UserVerification> UserVerifications { get; set; }
