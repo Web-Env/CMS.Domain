@@ -15,6 +15,7 @@ namespace CMS.Domain.Repositories.Content
         public async Task<IEnumerable<ContentTimeTracking>> GetByContentIdAsync(Guid contentId)
         {
             return await _CMSContext.Set<ContentTimeTracking>()
+                .Include(c => c.Content)
                 .Where(c => c.ContentId == contentId)
                 .AsNoTracking()
                 .ToListAsync();
@@ -23,6 +24,7 @@ namespace CMS.Domain.Repositories.Content
         public async Task<IEnumerable<ContentTimeTracking>> GetByUserIdAsync(Guid userId)
         {
             return await _CMSContext.Set<ContentTimeTracking>()
+                .Include(c => c.Content)
                 .Where(c => c.UserId == userId)
                 .AsNoTracking()
                 .ToListAsync();
@@ -31,6 +33,7 @@ namespace CMS.Domain.Repositories.Content
         public async Task<ContentTimeTracking> GetByContentIdAndUserIdAsync(Guid contentId, Guid userId)
         {
             return await _CMSContext.Set<ContentTimeTracking>()
+                .Include(c => c.Content)
                 .Where(c => c.ContentId == contentId && c.UserId == userId)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
