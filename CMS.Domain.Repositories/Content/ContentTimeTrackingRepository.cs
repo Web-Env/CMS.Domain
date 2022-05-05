@@ -15,7 +15,6 @@ namespace CMS.Domain.Repositories.Content
         public async Task<IEnumerable<ContentTimeTracking>> GetByContentIdAsync(Guid contentId)
         {
             return await _CMSContext.Set<ContentTimeTracking>()
-                .Include(c => c.Content)
                 .Where(c => c.ContentId == contentId)
                 .AsNoTracking()
                 .ToListAsync();
