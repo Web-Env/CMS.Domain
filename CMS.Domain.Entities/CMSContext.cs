@@ -17,13 +17,13 @@ namespace CMS.Domain.Entities
         {
         }
 
-        public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<ContentTimeTracking> ContentTimeTrackings { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserVerification> UserVerifications { get; set; }
+        public virtual DbSet<VGetUser> VGetUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,20 +37,6 @@ namespace CMS.Domain.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-
-            modelBuilder.Entity<AuditLog>(entity =>
-            {
-                entity.ToTable("AuditLog");
-
-                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
-
-                entity.Property(e => e.OccurredOn).HasColumnType("datetime");
-
-                entity.Property(e => e.UserAddress)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-            });
 
             modelBuilder.Entity<Content>(entity =>
             {
@@ -249,6 +235,40 @@ namespace CMS.Domain.Entities
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserVerification_User");
+            });
+
+            modelBuilder.Entity<VGetUser>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("v_GetUsers");
+
+                entity.Property(e => e.CreatedByFirstName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedByLastName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastUpdatedOn).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);
