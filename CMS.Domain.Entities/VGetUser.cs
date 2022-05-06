@@ -17,7 +17,6 @@ namespace CMS.Domain.Entities
         public Guid CreatedBy { get; set; }
         public DateTime LastUpdatedOn { get; set; }
         public Guid LastUpdatedBy { get; set; }
-        public string CreatedByFirstName { get; set; }
-        public string CreatedByLastName { get; set; }
+        public string CreatedByName { get; set; }
     }
 }

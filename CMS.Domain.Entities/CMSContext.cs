@@ -243,12 +243,8 @@ namespace CMS.Domain.Entities
 
                 entity.ToView("v_GetUsers");
 
-                entity.Property(e => e.CreatedByFirstName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreatedByLastName)
-                    .HasMaxLength(100)
+                entity.Property(e => e.CreatedByName)
+                    .HasMaxLength(151)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
