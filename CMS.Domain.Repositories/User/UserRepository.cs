@@ -16,9 +16,6 @@ namespace CMS.Domain.Repositories.User
             var offset = pageSize * (pageNumber - 1);
 
             return await _CMSContext.VGetUsers
-                .Skip(offset)
-                .Take(pageSize)
-                .AsNoTracking()
                 .ToListAsync();
         }
     }
