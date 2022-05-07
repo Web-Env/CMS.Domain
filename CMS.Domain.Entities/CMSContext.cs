@@ -256,6 +256,8 @@ namespace CMS.Domain.Entities
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ExpiresOn).HasColumnType("datetime");
+
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasMaxLength(50)

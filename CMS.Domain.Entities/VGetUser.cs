@@ -13,6 +13,8 @@ namespace CMS.Domain.Entities
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsVerified { get; set; }
+        public DateTime? ExpiresOn { get; set; }
+        public bool Deleted { get; set; }
         public DateTime CreatedOn { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime LastUpdatedOn { get; set; }
