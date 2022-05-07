@@ -21,6 +21,7 @@ namespace CMS.Domain.Entities
         public string UserSecret { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime? ExpiresOn { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsVerified { get; set; }
         public DateTime CreatedOn { get; set; }
