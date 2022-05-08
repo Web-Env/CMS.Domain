@@ -16,7 +16,8 @@ namespace CMS.Domain.Repositories.Content
             var offset = pageSize * (pageNumber - 1);
 
             return await _CMSContext.Set<Announcement>()
-                .Include(c => c.CreatedByNavigation)
+                .Include(a => a.CreatedByNavigation)
+                .OrderByDescending(a => a.CreatedOn)
                 .Skip(offset)
                 .Take(pageSize)
                 .AsNoTracking()
@@ -26,8 +27,8 @@ namespace CMS.Domain.Repositories.Content
         public async Task<Announcement> GetByPathAsync(string announcementPath)
         {
             return await _CMSContext.Set<Announcement>()
-                .Where(c => c.Path == announcementPath)
-                .Include(c => c.CreatedByNavigation)
+                .Where(a => a.Path == announcementPath)
+                .Include(a => a.CreatedByNavigation)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
         }
