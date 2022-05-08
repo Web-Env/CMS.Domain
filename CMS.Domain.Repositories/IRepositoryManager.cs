@@ -1,5 +1,4 @@
-﻿using CMS.Domain.Repositories.Audit.Interfaces;
-using CMS.Domain.Repositories.Content.Interfaces;
+﻿using CMS.Domain.Repositories.Content.Interfaces;
 using CMS.Domain.Repositories.User.Interfaces;
 using System;
 
@@ -7,7 +6,7 @@ namespace CMS.Domain.Repositories
 {
     public interface IRepositoryManager : IDisposable
     {
-        IAuditLogRepository AuditLogRepository { get; }
+        IAnnouncementRepository AnnouncementRepository { get; }
 
         IContentRepository ContentRepository { get; }
 

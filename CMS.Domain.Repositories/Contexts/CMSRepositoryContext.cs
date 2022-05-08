@@ -7,8 +7,6 @@ namespace CMS.Domain.Repositories.Contexts
     {
         public CMSRepositoryContext(DbContextOptions<CMSRepositoryContext> options) : base(options) { }
 
-        public DbSet<AuditLog> AuditLogs { get; set; }
-
         public DbSet<Entities.Content> Contents { get; set; }
 
         public DbSet<PasswordReset> PasswordResets { get; set; }

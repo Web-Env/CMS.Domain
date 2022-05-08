@@ -5,16 +5,10 @@ using System.Collections.Generic;
 
 namespace CMS.Domain.Entities
 {
-    public partial class Content
+    public partial class Announcement
     {
-        public Content()
-        {
-            ContentTimeTrackings = new HashSet<ContentTimeTracking>();
-        }
-
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public Guid? SectionId { get; set; }
         public string Path { get; set; }
         public bool? Active { get; set; }
         public int Views { get; set; }
@@ -24,7 +18,6 @@ namespace CMS.Domain.Entities
         public Guid LastUpdatedBy { get; set; }
 
         public virtual User CreatedByNavigation { get; set; }
-        public virtual Section Section { get; set; }
-        public virtual ICollection<ContentTimeTracking> ContentTimeTrackings { get; set; }
+        public virtual User LastUpdatedByNavigation { get; set; }
     }
 }

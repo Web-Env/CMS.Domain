@@ -17,6 +17,7 @@ namespace CMS.Domain.Entities
         {
         }
 
+        public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<ContentTimeTracking> ContentTimeTrackings { get; set; }
         public virtual DbSet<PasswordReset> PasswordResets { get; set; }
@@ -38,11 +39,15 @@ namespace CMS.Domain.Entities
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            modelBuilder.Entity<Content>(entity =>
+            modelBuilder.Entity<Announcement>(entity =>
             {
-                entity.ToTable("Content");
+                entity.ToTable("Announcement");
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
@@ -54,10 +59,38 @@ namespace CMS.Domain.Entities
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
+                    .HasMaxLength(250);
 
-                entity.Property(e => e.Url)
+                entity.HasOne(d => d.CreatedByNavigation)
+                    .WithMany(p => p.AnnouncementCreatedByNavigations)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.LastUpdatedByNavigation)
+                    .WithMany(p => p.AnnouncementLastUpdatedByNavigations)
+                    .HasForeignKey(d => d.LastUpdatedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Content>(entity =>
+            {
+                entity.ToTable("Content");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+
+                entity.Property(e => e.Active)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.LastUpdatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.Path)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(250);
 
