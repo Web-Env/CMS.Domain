@@ -1,9 +1,6 @@
 ﻿using CMS.Domain.Entities;
-using CMS.Domain.Repositories.Audit;
-using CMS.Domain.Repositories.Audit.Interfaces;
 using CMS.Domain.Repositories.Content;
 using CMS.Domain.Repositories.Content.Interfaces;
-using CMS.Domain.Repositories.Contexts;
 using CMS.Domain.Repositories.User;
 using CMS.Domain.Repositories.User.Interfaces;
 
@@ -13,7 +10,7 @@ namespace CMS.Domain.Repositories
     {
         private readonly CMSContext _CMSContext;
 
-        public IAuditLogRepository AuditLogRepository { get; private set; }
+        public IAnnouncementRepository AnnouncementRepository { get; private set; }
         public IContentRepository ContentRepository { get; private set; }
         public IContentTimeTrackingRepository ContentTimeTrackingRepository { get; private set; }
         public IPasswordResetRepository PasswordResetRepository { get; private set; }
@@ -25,7 +22,7 @@ namespace CMS.Domain.Repositories
         {
             _CMSContext = context;
 
-            AuditLogRepository = new AuditLogRepository(_CMSContext);
+            AnnouncementRepository = new AnnouncementRepository(_CMSContext);
             ContentRepository = new ContentRepository(_CMSContext);
             ContentTimeTrackingRepository = new ContentTimeTrackingRepository(_CMSContext);
             PasswordResetRepository = new PasswordResetRepository(_CMSContext);
